@@ -12,14 +12,15 @@ use JSON 'to_json';
 use File::Slurp 'write_file';
 use Path::Class qw(file);
 
-coerce 'ArrayRef' => from 'Str' => via {
+subtype 'CS::InputList' => as 'ArrayRef';
+coerce 'CS::InputList' => from 'Str' => via {
     my @list = split /;/, $_;
     return \@list;
 };
 
 has dirs => (
     is     => 'ro',
-    isa    => 'ArrayRef',
+    isa    => 'CS::InputList',
     coerce => 1,
 );
 
@@ -34,14 +35,14 @@ has files => (
 
 has targets => (
     is      => 'ro',
-    isa     => 'ArrayRef',
+    isa     => 'CS::InputList',
     coerce  => 1,
     default => 'Block',
 );
 
 has metrics => (
     is      => 'ro',
-    isa     => 'ArrayRef',
+    isa     => 'CS::InputList',
     coerce  => 1,
     default => 'size',
 );
