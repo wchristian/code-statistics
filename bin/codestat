@@ -1,0 +1,7 @@
+#!/usr/bin/perl
+use strict;
+use warnings;
+
+package codestat;
+use Code::Statistics::App;
+Code::Statistics::App->run;
