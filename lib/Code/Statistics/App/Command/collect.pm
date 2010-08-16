@@ -15,11 +15,7 @@ sub opt_spec {
 sub execute {
     my ( $self, $opt, $arg ) = @_;
 
-    my %args = (
-        dirs => $opt->dirs,
-    );
-
-    return $self->cstat( %args )->collect;
+    return $self->cstat( %{$opt} )->collect;
 }
 
 1;
