@@ -13,6 +13,11 @@ has args => (
     default => sub { {} },
 );
 
+has conf_file => (
+    is => 'ro',
+    isa => 'Str',
+);
+
 sub collect {
     my ( $self ) = @_;
     Code::Statistics::Collector->new( $self->args )->collect;
