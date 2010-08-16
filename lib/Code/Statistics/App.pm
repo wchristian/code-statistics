@@ -10,6 +10,7 @@ use Code::Statistics;
 sub global_opt_spec {
     return (
         [ 'conf_file|c=s' => 'path to a config file', { default => '.codestatrc' } ],
+        [ 'profile|p=s' => 'a configuration profile', { default => '' } ],
     );
 }
 
@@ -18,6 +19,7 @@ sub cstat {
 
     my %args = (
         conf_file => $self->global_options->conf_file,
+        profile => $self->global_options->profile,
     );
 
     return Code::Statistics->new( %args, args => \%command_args );
