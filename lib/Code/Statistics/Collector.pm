@@ -2,6 +2,7 @@ use strict;
 use warnings;
 
 package Code::Statistics::Collector;
+# ABSTRACT: collects statistics and dumps them to json
 
 use Moose;
 use MooseX::HasDefaults::RO;

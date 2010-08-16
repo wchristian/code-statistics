@@ -2,6 +2,8 @@ use strict;
 use warnings;
 
 package Code::Statistics::App::Command::nop;
+# ABSTRACT: does nothing
+
 use Code::Statistics::App -command;
 
 sub abstract { 'do nothing' }

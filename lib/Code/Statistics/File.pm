@@ -2,6 +2,7 @@ use strict;
 use warnings;
 
 package Code::Statistics::File;
+# ABSTRACT: loads a file, searches for targets in it and measures their metrics
 
 use Moose;
 use MooseX::HasDefaults::RO;

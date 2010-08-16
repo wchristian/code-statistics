@@ -2,6 +2,7 @@ use strict;
 use warnings;
 
 package Code::Statistics::Config;
+# ABSTRACT: merges configuration options from various sources
 
 use Moose;
 use MooseX::HasDefaults::RO;

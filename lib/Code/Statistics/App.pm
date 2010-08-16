@@ -2,6 +2,7 @@ use strict;
 use warnings;
 
 package Code::Statistics::App;
+# ABSTRACT: handles global command configuration and cstat instantiation
 
 use App::Cmd::Setup -app;
 

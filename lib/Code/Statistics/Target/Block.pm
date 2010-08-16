@@ -2,6 +2,7 @@ use strict;
 use warnings;
 
 package Code::Statistics::Target::Block;
+# ABSTRACT: represents a block in perl code
 
 sub class { return 'PPI::Structure::Block' }
 

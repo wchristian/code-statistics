@@ -2,6 +2,7 @@ use strict;
 use warnings;
 
 package Code::Statistics;
+# ABSTRACT: collects and reports statistics on perl code
 
 use Code::Statistics::Config;
 use Code::Statistics::Collector;

@@ -2,6 +2,8 @@ use strict;
 use warnings;
 
 package Code::Statistics::App::Command::collect;
+# ABSTRACT: the shell command handler for stat collection
+
 use Code::Statistics::App -command;
 
 sub abstract { 'gather measurements on targets and write them to disk' }
