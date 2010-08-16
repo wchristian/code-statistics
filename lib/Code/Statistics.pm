@@ -7,24 +7,21 @@ use Code::Statistics::Config;
 use Code::Statistics::Collector;
 
 use Moose;
+use MooseX::HasDefaults::RO;
 
 has args => (
-    is => 'ro',
     isa => 'HashRef',
 );
 
 has conf_file => (
-    is => 'ro',
     isa => 'Str',
 );
 
 has profile => (
-    is => 'ro',
     isa => 'Str',
 );
 
 has command_config => (
-    is => 'ro',
     isa => 'HashRef',
     default => \&build_command_config,
 );

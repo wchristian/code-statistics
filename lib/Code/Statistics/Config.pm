@@ -4,9 +4,9 @@ use warnings;
 package Code::Statistics::Config;
 
 use Moose;
+use MooseX::HasDefaults::RO;
 
 has cstat => (
-    is => 'ro',
     isa => 'Code::Statistics',
     required => 1,
 );

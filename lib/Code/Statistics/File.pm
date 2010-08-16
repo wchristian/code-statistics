@@ -4,22 +4,20 @@ use warnings;
 package Code::Statistics::File;
 
 use Moose;
+use MooseX::HasDefaults::RO;
 
 use PPI::Document;
 
 has path => (
-    is       => 'ro',
     isa      => 'Str',
     required => 1,
 );
 
 has targets => (
-    is  => 'ro',
     isa => 'ArrayRef',
 );
 
 has metrics => (
-    is  => 'ro',
     isa => 'ArrayRef',
 );
 

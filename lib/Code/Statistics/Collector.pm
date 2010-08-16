@@ -4,6 +4,7 @@ use warnings;
 package Code::Statistics::Collector;
 
 use Moose;
+use MooseX::HasDefaults::RO;
 use Moose::Util::TypeConstraints;
 
 use File::Find::Rule::Perl;
@@ -19,13 +20,11 @@ coerce 'CS::InputList' => from 'Str' => via {
 };
 
 has dirs => (
-    is     => 'ro',
     isa    => 'CS::InputList',
     coerce => 1,
 );
 
 has files => (
-    is      => 'ro',
     isa     => 'ArrayRef',
     lazy    => 1,
     default => sub {
@@ -34,14 +33,12 @@ has files => (
 );
 
 has targets => (
-    is      => 'ro',
     isa     => 'CS::InputList',
     coerce  => 1,
     default => 'Block',
 );
 
 has metrics => (
-    is      => 'ro',
     isa     => 'CS::InputList',
     coerce  => 1,
     default => 'size',
