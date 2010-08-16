@@ -1,5 +1,6 @@
 use strict;
 use warnings;
+
 package Test::Class::TestGroup;
 
 no warnings 'redefine';
@@ -9,7 +10,7 @@ use parent 'Test::Class';
 use Test::More;
 
 sub TestGroup : ATTR(CODE,RAWDATA) {
-    my ($class, $symbol, $code_ref, $attr, $args) = @_;
+    my ( $class, $symbol, $code_ref, $attr, $args ) = @_;
 
     # get the test description either from the args, or from the sub routine name; then reset the args to 1 (single test)
     my $test_description = $args || *{$symbol}{NAME};
@@ -25,7 +26,7 @@ sub TestGroup : ATTR(CODE,RAWDATA) {
     };
 
     # tell Test::Class to run as a single test
-    Test::Class::Test($class, $symbol, $code_ref, $attr, $args);
-};
+    Test::Class::Test( $class, $symbol, $code_ref, $attr, $args );
+}
 
 1;

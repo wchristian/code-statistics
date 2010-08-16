@@ -2,6 +2,7 @@ use strict;
 use warnings;
 
 package Code::Statistics::Config;
+
 # ABSTRACT: merges configuration options from various sources
 
 use Moose;
@@ -11,7 +12,7 @@ use Hash::Merge qw( merge );
 use Config::INI::Reader;
 
 has cstat => (
-    isa => 'Code::Statistics',
+    isa      => 'Code::Statistics',
     required => 1,
 );
 
@@ -19,14 +20,15 @@ has cstat => (
     Builds the command-related configuration hash. The hash contains all config
     options from the global config file, local file and command line arguments.
 =cut
+
 sub assemble {
     my ( $self ) = @_;
 
     my $config = {};
 
     $config = merge( $self->_global_config, $config );
-    $config = merge( $self->_local_config, $config );
-    $config = merge( $self->cstat->args, $config );
+    $config = merge( $self->_local_config,  $config );
+    $config = merge( $self->cstat->args,    $config );
 
     return $config;
 }
@@ -52,7 +54,7 @@ sub _merged_conf_from {
 
     my $merge;
     my @sections = grep { defined } ( '_', $self->cstat->command, $self->_profile_section );
-    for( @sections ) {
+    for ( @sections ) {
         next if !$conf->{$_};
         $merge = merge( $conf->{$_}, $merge );
     }
@@ -64,7 +66,7 @@ sub _profile_section {
     my ( $self ) = @_;
 
     my $section = $self->cstat->command;
-    $section .= '::'.$self->cstat->profile if $self->cstat->profile;
+    $section .= '::' . $self->cstat->profile if $self->cstat->profile;
 
     return $section;
 }

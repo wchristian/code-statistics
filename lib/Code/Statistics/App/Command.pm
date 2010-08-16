@@ -2,6 +2,7 @@ use strict;
 use warnings;
 
 package Code::Statistics::App::Command;
+
 # ABSTRACT: base class for commands
 
 use App::Cmd::Setup -command;
@@ -9,6 +10,7 @@ use App::Cmd::Setup -command;
 =head2 cstat
     Dispatches to the Code::Statistics object creation routine.
 =cut
+
 sub cstat {
     return shift->app->cstat( @_ );
 }

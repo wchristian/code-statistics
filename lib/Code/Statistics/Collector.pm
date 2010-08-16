@@ -2,6 +2,7 @@ use strict;
 use warnings;
 
 package Code::Statistics::Collector;
+
 # ABSTRACT: collects statistics and dumps them to json
 
 use Moose;
@@ -47,8 +48,8 @@ has metrics => (
 );
 
 has progress_bar => (
-    isa => 'Term::ProgressBar::Simple',
-    lazy => 1,
+    isa     => 'Term::ProgressBar::Simple',
+    lazy    => 1,
     default => sub {
         my $params = { name => 'Files', ETA => 'linear', max_update_rate => '0.1' };
         $params->{count} = @{ $_[0]->files };
@@ -60,11 +61,12 @@ has progress_bar => (
     Locates files to collect statistics on, collects them and dumps them to
     JSON.
 =cut
+
 sub collect {
     my ( $self ) = @_;
 
-    require "Code/Statistics/Target/$_.pm" for @{ $self->targets };  ## no critic qw( RequireBarewordIncludes )
-    require "Code/Statistics/Metric/$_.pm" for @{ $self->metrics };  ## no critic qw( RequireBarewordIncludes )
+    require "Code/Statistics/Target/$_.pm" for @{ $self->targets };    ## no critic qw( RequireBarewordIncludes )
+    require "Code/Statistics/Metric/$_.pm" for @{ $self->metrics };    ## no critic qw( RequireBarewordIncludes )
 
     $_->analyze for @{ $self->files };
     $self->_dump_file_measurements;
@@ -90,9 +92,9 @@ sub _prepare_file {
     my ( $self, $path ) = @_;
 
     my %params = (
-        path    => $path,
-        targets => $self->targets,
-        metrics => $self->metrics,
+        path      => $path,
+        targets   => $self->targets,
+        metrics   => $self->metrics,
         collector => $self,
     );
 
@@ -114,6 +116,5 @@ sub _strip_file {
     my %stripped_file = map { $_ => $file->{$_} } qw( path measurements );
     return \%stripped_file;
 }
-
 
 1;

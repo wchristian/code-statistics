@@ -2,6 +2,7 @@ use strict;
 use warnings;
 
 package Code::Statistics::File;
+
 # ABSTRACT: loads a file, searches for targets in it and measures their metrics
 
 use Moose;
@@ -15,13 +16,13 @@ has path => (
 );
 
 has collector => (
-    isa => 'Code::Statistics::Collector',
+    isa      => 'Code::Statistics::Collector',
     required => 1,
 );
 
 has ppi => (
-    isa => 'PPI::Document',
-    lazy => 1,
+    isa     => 'PPI::Document',
+    lazy    => 1,
     default => sub {
         PPI::Document->new( $_[0]->path );
     },
@@ -30,6 +31,7 @@ has ppi => (
 =head2 analyze
     Finds targets in the given file and collects the metrics on those.
 =cut
+
 sub analyze {
     my ( $self ) = @_;
 
