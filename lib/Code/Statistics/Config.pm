@@ -6,6 +6,8 @@ package Code::Statistics::Config;
 use Moose;
 use MooseX::HasDefaults::RO;
 
+use Hash::Merge qw( merge );
+
 has cstat => (
     isa => 'Code::Statistics',
     required => 1,
@@ -16,17 +18,11 @@ sub assemble {
 
     my $config = {};
 
-    $self->copy( $self->global_config, $config );
-    $self->copy( $self->local_config, $config );
-    $self->copy( $self->cstat->args, $config );
+    $config = merge( $self->global_config, $config );
+    $config = merge( $self->local_config, $config );
+    $config = merge( $self->cstat->args, $config );
 
     return $config;
-}
-
-sub copy {
-    my ( $self, $source, $target ) = @_;
-    $target->{$_} = $source->{$_} for keys %{$source};
-    return;
 }
 
 sub local_config {
