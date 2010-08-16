@@ -8,6 +8,7 @@ use Moose;
 use MooseX::HasDefaults::RO;
 
 use Hash::Merge qw( merge );
+use Config::INI::Reader;
 
 has cstat => (
     isa => 'Code::Statistics',
@@ -31,11 +32,41 @@ sub assemble {
 }
 
 sub local_config {
-    return {};
+    my ( $self ) = @_;
+
+    return $self->_merged_conf_from( $self->cstat->conf_file );
 }
 
 sub global_config {
-    return {};
+    my ( $self ) = @_;
+
+    return $self->_merged_conf_from( $self->cstat->global_conf_file );
+}
+
+sub _merged_conf_from {
+    my ( $self, $file ) = @_;
+
+    return {} if !-e $file;
+
+    my $conf = Config::INI::Reader->read_file( $file );
+
+    my $merge;
+    my @sections = grep { defined } ( '_', $self->cstat->command, $self->_profile_section );
+    for( @sections ) {
+        next if !$conf->{$_};
+        $merge = merge( $conf->{$_}, $merge );
+    }
+
+    return $merge;
+}
+
+sub _profile_section {
+    my ( $self ) = @_;
+
+    my $section = $self->cstat->command;
+    $section .= '::'.$self->cstat->profile if $self->cstat->profile;
+
+    return $section;
 }
 
 1;
