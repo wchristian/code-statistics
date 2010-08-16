@@ -41,6 +41,9 @@ sub build_command_config {
     return $config;
 }
 
+=head2 collect
+    Dispatches configuration to the statistics collector module.
+=cut
 sub collect {
     my ( $self ) = @_;
     Code::Statistics::Collector->new( $self->command_config )->collect;

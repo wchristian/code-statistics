@@ -27,6 +27,9 @@ has ppi => (
     },
 );
 
+=head2 analyze
+    Finds targets in the given file and collects the metrics on those.
+=cut
 sub analyze {
     my ( $self ) = @_;
 

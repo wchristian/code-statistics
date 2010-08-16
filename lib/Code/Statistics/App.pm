@@ -21,6 +21,9 @@ sub global_opt_spec {
     );
 }
 
+=head2 cstat
+    Creates a Code::Statistics object with the given commandline args.
+=cut
 sub cstat {
     my ( $self, %command_args ) = @_;
     

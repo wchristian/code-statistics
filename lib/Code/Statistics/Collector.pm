@@ -56,6 +56,10 @@ has progress_bar => (
     },
 );
 
+=head2 collect
+    Locates files to collect statistics on, collects them and dumps them to
+    JSON.
+=cut
 sub collect {
     my ( $self ) = @_;
 

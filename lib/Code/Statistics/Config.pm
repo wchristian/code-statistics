@@ -14,6 +14,10 @@ has cstat => (
     required => 1,
 );
 
+=head2 assemble
+    Builds the command-related configuration hash. The hash contains all config
+    options from the global config file, local file and command line arguments.
+=cut
 sub assemble {
     my ( $self ) = @_;
 
