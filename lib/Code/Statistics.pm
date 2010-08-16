@@ -21,6 +21,10 @@ has conf_file => (
     isa => 'Str',
 );
 
+has global_conf_file => (
+    isa => 'Str',
+);
+
 has profile => (
     isa => 'Str',
 );
