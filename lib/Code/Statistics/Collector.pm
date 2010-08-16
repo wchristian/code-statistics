@@ -12,6 +12,7 @@ use Code::Statistics::File;
 use JSON 'to_json';
 use File::Slurp 'write_file';
 use Path::Class qw(file);
+use Term::ProgressBar::Simple;
 
 subtype 'CS::InputList' => as 'ArrayRef';
 coerce 'CS::InputList' => from 'Str' => via {
@@ -42,6 +43,16 @@ has metrics => (
     isa     => 'CS::InputList',
     coerce  => 1,
     default => 'size',
+);
+
+has progress_bar => (
+    isa => 'Term::ProgressBar::Simple',
+    lazy => 1,
+    default => sub {
+        my $params = { name => 'Files', ETA => 'linear', max_update_rate => '0.1' };
+        $params->{count} = @{ $_[0]->files };
+        return Term::ProgressBar::Simple->new( $params );
+    },
 );
 
 sub collect {
@@ -77,6 +88,7 @@ sub _prepare_file {
         path    => $path,
         targets => $self->targets,
         metrics => $self->metrics,
+        collector => $self,
     );
 
     return Code::Statistics::File->new( %params );

@@ -21,6 +21,12 @@ has metrics => (
     isa => 'ArrayRef',
 );
 
+has collector => (
+    isa => 'Code::Statistics::Collector',
+    required => 1,
+);
+
+
 sub ppi {
     return PPI::Document->new( $_[0]->path );
 }
@@ -30,6 +36,7 @@ sub analyze {
 
     my $ppi = $self->ppi;
     $self->_process_target_class( $ppi, $_ ) for @{ $self->targets };
+    $self->collector->progress_bar->increment;
 
     return $self;
 }
