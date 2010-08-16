@@ -3,5 +3,9 @@ use strict;
 use warnings;
 
 package codestat;
+
 use Code::Statistics::App;
+
+@ARGV = qw( commands ) if !@ARGV; # make sure it prints the global options by default
+
 Code::Statistics::App->run;
