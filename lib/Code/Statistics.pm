@@ -13,6 +13,10 @@ has args => (
     isa => 'HashRef',
 );
 
+has command => (
+    isa => 'Str',
+);
+
 has conf_file => (
     isa => 'Str',
 );

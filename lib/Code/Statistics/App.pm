@@ -20,6 +20,7 @@ sub cstat {
     my %args = (
         conf_file => $self->global_options->conf_file,
         profile => $self->global_options->profile,
+        command =>  ($self->get_command( @ARGV ))[0],
     );
 
     return Code::Statistics->new( %args, args => \%command_args );
