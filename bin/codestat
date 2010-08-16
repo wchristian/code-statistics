@@ -6,6 +6,6 @@ package codestat;
 
 use Code::Statistics::App;
 
-@ARGV = qw( commands ) if !@ARGV; # make sure it prints the global options by default
+local @ARGV = qw( commands ) if !@ARGV; # make sure it prints the global options by default
 
 Code::Statistics::App->run;

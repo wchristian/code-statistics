@@ -6,7 +6,7 @@ package Code::Statistics::App::Command::collect;
 
 use Code::Statistics::App -command;
 
-sub abstract { 'gather measurements on targets and write them to disk' }
+sub abstract { return 'gather measurements on targets and write them to disk' }
 
 sub opt_spec {
     return (

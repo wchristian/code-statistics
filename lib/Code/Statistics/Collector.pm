@@ -63,8 +63,8 @@ has progress_bar => (
 sub collect {
     my ( $self ) = @_;
 
-    require "Code/Statistics/Target/$_.pm" for @{ $self->targets };
-    require "Code/Statistics/Metric/$_.pm" for @{ $self->metrics };
+    require "Code/Statistics/Target/$_.pm" for @{ $self->targets };  ## no critic qw( RequireBarewordIncludes )
+    require "Code/Statistics/Metric/$_.pm" for @{ $self->metrics };  ## no critic qw( RequireBarewordIncludes )
 
     $_->analyze for @{ $self->files };
     $self->_dump_file_measurements;

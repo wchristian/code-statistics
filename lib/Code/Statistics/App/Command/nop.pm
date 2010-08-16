@@ -6,10 +6,12 @@ package Code::Statistics::App::Command::nop;
 
 use Code::Statistics::App -command;
 
-sub abstract { 'do nothing' }
+sub abstract { return 'do nothing' }
 
 sub opt_spec {
-    [ 'dirs=s' => 'the directories in which to to search for perl code files', { default => '.' } ],;
+    return (
+        [ 'dirs=s' => 'the directories in which to to search for perl code files', { default => '.' } ],
+    );
 }
 
 sub execute {
