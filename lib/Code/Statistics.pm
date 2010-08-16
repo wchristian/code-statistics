@@ -32,10 +32,10 @@ has profile => (
 
 has command_config => (
     isa => 'HashRef',
-    default => \&build_command_config,
+    default => \&_build_command_config,
 );
 
-sub build_command_config {
+sub _build_command_config {
     my ( $self ) = @_;
     my $config = Code::Statistics::Config->new( cstat => $self )->assemble;
     return $config;

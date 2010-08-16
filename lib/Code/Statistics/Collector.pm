@@ -102,14 +102,14 @@ sub _prepare_file {
 sub _dump_file_measurements {
     my ( $self ) = @_;
 
-    my @files = map $self->strip_file( $_ ), @{ $self->files };
+    my @files = map $self->_strip_file( $_ ), @{ $self->files };
 
     write_file( 'codestat.out', to_json( \@files, { pretty => 1 } ) );
 
     return $self;
 }
 
-sub strip_file {
+sub _strip_file {
     my ( $self, $file ) = @_;
     my %stripped_file = map { $_ => $file->{$_} } qw( path measurements );
     return \%stripped_file;

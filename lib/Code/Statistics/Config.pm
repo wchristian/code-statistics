@@ -24,20 +24,20 @@ sub assemble {
 
     my $config = {};
 
-    $config = merge( $self->global_config, $config );
-    $config = merge( $self->local_config, $config );
+    $config = merge( $self->_global_config, $config );
+    $config = merge( $self->_local_config, $config );
     $config = merge( $self->cstat->args, $config );
 
     return $config;
 }
 
-sub local_config {
+sub _local_config {
     my ( $self ) = @_;
 
     return $self->_merged_conf_from( $self->cstat->conf_file );
 }
 
-sub global_config {
+sub _global_config {
     my ( $self ) = @_;
 
     return $self->_merged_conf_from( $self->cstat->global_conf_file );
