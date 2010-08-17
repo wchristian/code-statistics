@@ -38,8 +38,7 @@ sub _build_command_config {
 
 sub collect {
     my ( $self ) = @_;
-    Code::Statistics::Collector->new( $self->command_config )->collect;
-    return;
+    return Code::Statistics::Collector->new( $self->command_config )->collect;
 }
 
 1;

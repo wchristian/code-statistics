@@ -69,9 +69,11 @@ sub collect {
     require "Code/Statistics/Metric/$_.pm" for @{ $self->metrics };    ## no critic qw( RequireBarewordIncludes )
 
     $_->analyze for @{ $self->files };
-    $self->_dump_file_measurements;
 
-    return $self;
+    my $json = $self->_measurements_as_json;
+    $self->_dump_file_measurements( $json );
+
+    return $json;
 }
 
 sub _find_files {
@@ -102,13 +104,21 @@ sub _prepare_file {
 }
 
 sub _dump_file_measurements {
+    my ( $self, $text ) = @_;
+
+    write_file( 'codestat.out', $text );
+
+    return $self;
+}
+
+sub _measurements_as_json {
     my ( $self ) = @_;
 
     my @files = map $self->_strip_file( $_ ), @{ $self->files };
 
-    write_file( 'codestat.out', to_json( \@files, { pretty => 1 } ) );
+    my $json = to_json( \@files, { pretty => 1 } );
 
-    return $self;
+    return $json;
 }
 
 sub _strip_file {
