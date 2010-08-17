@@ -22,6 +22,7 @@ coerce 'CS::InputList' => from 'Str' => via {
     return \@list;
 };
 
+has no_dump => ( isa => 'Bool' );
 has dirs => (
     isa    => 'CS::InputList',
     coerce => 1,
@@ -105,6 +106,7 @@ sub _prepare_file {
 
 sub _dump_file_measurements {
     my ( $self, $text ) = @_;
+    return if $self->no_dump;
 
     write_file( 'codestat.out', $text );
 

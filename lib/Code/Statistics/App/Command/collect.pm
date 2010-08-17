@@ -10,7 +10,10 @@ use Code::Statistics::App -command;
 sub abstract { return 'gather measurements on targets and write them to disk' }
 
 sub opt_spec {
-    my @opts = ( [ 'dirs=s' => 'the directories in which to to search for perl code files', { default => '.' } ], );
+    my @opts = (
+        [ 'dirs=s' => 'the directories in which to to search for perl code files', { default => '.' } ],
+        [ 'no_dump' => 'prevents writing of measurements to disk' ],
+    );
     return @opts;
 }
 
