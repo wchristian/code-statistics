@@ -59,11 +59,17 @@ sub _process_target_class {
 sub _get_target_class_data {
     my ( $self, $target_type ) = @_;
 
-    my $package           = "Code::Statistics::Target::$target_type";
-    my @supported_metrics = grep { $package->supports( $_ ) } @{ $self->collector->metrics };
-    my $ppi_class         = $package->class;
+    my @supported_metrics = grep $self->_are_compatible( $target_type, $_ ), @{ $self->collector->metrics };
+    my $ppi_class         = "Code::Statistics::Target::$target_type"->class;
 
     return ( $ppi_class, @supported_metrics );
+}
+
+sub _are_compatible {
+    my ( $self, $target, $metric ) = @_;
+    return 1 if "Code::Statistics::Target::$target"->supports( $metric );
+    return 1 if "Code::Statistics::Metric::$metric"->supports( $target );
+    return 0;
 }
 
 sub _measure_target {

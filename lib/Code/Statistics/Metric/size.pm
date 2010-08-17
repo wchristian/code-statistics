@@ -15,4 +15,14 @@ sub measure {
     return $size;
 }
 
+=head2 supports
+    Returns the targets this metric supports.
+=cut
+
+sub supports {
+    my ( $class, $target ) = @_;
+    my %targets = ( 'Block' => 1, );
+    return $targets{$target};
+}
+
 1;
