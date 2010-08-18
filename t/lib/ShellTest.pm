@@ -22,7 +22,7 @@ sub make_fixture : Test(setup) {
     return;
 }
 
-sub basic_collect : Test {
+sub basic_collect : TestGroup {
     my ( $self ) = @_;
 
     local @ARGV = (
