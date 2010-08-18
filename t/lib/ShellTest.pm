@@ -19,6 +19,8 @@ sub make_fixture : Test(setup) {
         --dirs=data/shelltest/basic_collect
         --relative_paths
         --foreign_paths=Unix
+        --conf_file=data/config/shelltestrc
+        --global_conf_file=data/config/does_not_exist
     ) ];
 
     return;
