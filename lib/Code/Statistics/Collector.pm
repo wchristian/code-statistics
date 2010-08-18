@@ -41,13 +41,11 @@ has files => (
 has targets => (
     isa     => 'CS::InputList',
     coerce  => 1,
-    default => 'Block',
 );
 
 has metrics => (
     isa     => 'CS::InputList',
     coerce  => 1,
-    default => 'size',
 );
 
 has progress_bar => (

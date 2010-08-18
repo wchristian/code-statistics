@@ -15,6 +15,8 @@ sub opt_spec {
         [ 'no_dump' => 'prevents writing of measurements to disk' ],
         [ 'relative_paths' => 'switches file paths in dump from absolute to relative format' ],
         [ 'foreign_paths=s' => 'switches file paths in dump from native to indicated system format; see File::Spec for options', { default => '' } ],
+        [ 'targets=s' => 'specifies targets that will be looked for inside of files; see C::S::Target::*', { default => 'Block' } ],
+        [ 'metrics=s' => 'specifies metrics that be tried to be measured on targets; see C::S::Metric::*', { default => 'size' } ],
     );
     return @opts;
 }
