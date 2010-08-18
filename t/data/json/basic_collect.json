@@ -3,11 +3,72 @@
       "measurements" : {
          "Block" : [
             {
+               "size" : 144
+            },
+            {
+               "size" : 108
+            },
+            {
+               "size" : 56
+            },
+            {
+               "size" : 81
+            },
+            {
+               "size" : 414
+            }
+         ]
+      },
+      "path" : "author-critic_progressive.t"
+   },
+   {
+      "measurements" : {
+         "Block" : [
+            {
                "size" : 72
             }
          ]
       },
       "path" : "config.t"
+   },
+   {
+      "measurements" : {
+         "Block" : [
+            {
+               "size" : 149
+            },
+            {
+               "size" : 112
+            }
+         ]
+      },
+      "path" : "release-kwalitee.t"
+   },
+   {
+      "measurements" : {
+         "Block" : [
+            {
+               "size" : 149
+            },
+            {
+               "size" : 112
+            }
+         ]
+      },
+      "path" : "release-pod-coverage.t"
+   },
+   {
+      "measurements" : {
+         "Block" : [
+            {
+               "size" : 149
+            },
+            {
+               "size" : 112
+            }
+         ]
+      },
+      "path" : "release-pod-syntax.t"
    },
    {
       "measurements" : {
