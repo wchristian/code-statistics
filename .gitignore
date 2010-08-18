@@ -4,3 +4,4 @@
 /dev.bat
 /codestat.out
 /.perlcritic_history
+/.cover
