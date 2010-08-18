@@ -16,6 +16,7 @@ sub make_fixture : Test(setup) {
 
     $self->{basic_collect_args} = [ qw(
         collect
+        --dirs=data/shelltest/basic_collect
         --relative_paths
         --foreign_paths=Unix
     ) ];

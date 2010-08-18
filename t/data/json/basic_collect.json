@@ -1,130 +1,16 @@
 [
    {
-      "measurements" : {
-         "Block" : [
-            {
-               "size" : 144
-            },
-            {
-               "size" : 108
-            },
-            {
-               "size" : 56
-            },
-            {
-               "size" : 81
-            },
-            {
-               "size" : 414
-            }
-         ]
-      },
-      "path" : "author-critic_progressive.t"
+      "measurements" : null,
+      "path" : "data/shelltest/basic_collect/Empty.pm"
    },
    {
       "measurements" : {
          "Block" : [
             {
-               "size" : 72
+               "size" : 15
             }
          ]
       },
-      "path" : "config.t"
-   },
-   {
-      "measurements" : {
-         "Block" : [
-            {
-               "size" : 149
-            },
-            {
-               "size" : 112
-            }
-         ]
-      },
-      "path" : "release-kwalitee.t"
-   },
-   {
-      "measurements" : {
-         "Block" : [
-            {
-               "size" : 149
-            },
-            {
-               "size" : 112
-            }
-         ]
-      },
-      "path" : "release-pod-coverage.t"
-   },
-   {
-      "measurements" : {
-         "Block" : [
-            {
-               "size" : 149
-            },
-            {
-               "size" : 112
-            }
-         ]
-      },
-      "path" : "release-pod-syntax.t"
-   },
-   {
-      "measurements" : {
-         "Block" : [
-            {
-               "size" : 294
-            },
-            {
-               "size" : 120
-            }
-         ]
-      },
-      "path" : "lib/ShellTest.pm"
-   },
-   {
-      "measurements" : {
-         "Block" : [
-            {
-               "size" : 476
-            },
-            {
-               "size" : 587
-            },
-            {
-               "size" : 586
-            }
-         ]
-      },
-      "path" : "lib/Code/Statistics/ConfigTest.pm"
-   },
-   {
-      "measurements" : {
-         "Block" : [
-            {
-               "size" : 587
-            },
-            {
-               "size" : 9
-            },
-            {
-               "size" : 6
-            },
-            {
-               "size" : 9
-            },
-            {
-               "size" : 9
-            },
-            {
-               "size" : 122
-            },
-            {
-               "size" : 47
-            }
-         ]
-      },
-      "path" : "lib/Test/Class/TestGroup.pm"
+      "path" : "data/shelltest/basic_collect/OneSub.pm"
    }
 ]
