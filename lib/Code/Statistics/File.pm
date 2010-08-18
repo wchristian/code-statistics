@@ -9,6 +9,7 @@ use Moose;
 use MooseX::HasDefaults::RO;
 
 use PPI::Document;
+use Path::Class qw(file);
 
 has path => (
     isa      => 'Str',
@@ -36,9 +37,18 @@ sub analyze {
     my ( $self ) = @_;
 
     $self->_process_target_class( $_ ) for @{ $self->collector->targets };
+    $self->_format_file_path;
     $self->collector->progress_bar->increment;
 
     return $self;
+}
+
+sub _format_file_path {
+    my ( $self ) = @_;
+    my $path = file( $self->{path} );
+
+    $self->{path} = $path->stringify;
+    return;
 }
 
 sub _process_target_class {

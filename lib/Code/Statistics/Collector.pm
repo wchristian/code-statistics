@@ -13,7 +13,6 @@ use File::Find::Rule::Perl;
 use Code::Statistics::File;
 use JSON 'to_json';
 use File::Slurp 'write_file';
-use Path::Class qw(file);
 use Term::ProgressBar::Simple;
 
 subtype 'CS::InputList' => as 'ArrayRef';
@@ -80,7 +79,6 @@ sub collect {
 sub _find_files {
     my ( $self ) = @_;
     my @files = File::Find::Rule::Perl->perl_file->in( @{ $self->dirs } );
-    @files = map file( $_ )->absolute->stringify, @files;
     return @files;
 }
 
