@@ -9,6 +9,7 @@ BEGIN {
 
 use ShellTest;
 use Code::Statistics::ConfigTest;
+use Code::Statistics::FileTest;
 
 exit $ARGV[0]->runtests if $ARGV[0];
 
