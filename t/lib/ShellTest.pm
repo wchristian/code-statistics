@@ -10,8 +10,25 @@ use Test::Regression;
 
 use Code::Statistics::App;
 
+sub make_fixture : Test(setup) {
+    my ( $self ) = @_;
+
+    $self->{basic_collect_args} = [ qw(
+        collect
+        --relative_paths
+        --foreign_paths=Unix
+    ) ];
+
+    return;
+}
+
 sub basic_collect : Test {
-    local @ARGV = qw( collect --no_dump --relative_paths --foreign_paths=Unix );
+    my ( $self ) = @_;
+
+    local @ARGV = (
+        @{$self->{basic_collect_args}},
+        qw( --no_dump )
+    );
 
     ok_regression(
         sub { $self->run_codestat_shell_app },
