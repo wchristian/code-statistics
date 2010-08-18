@@ -7,6 +7,7 @@ use parent 'Test::Class::TestGroup';
 
 use Test::More;
 use Test::Regression;
+use File::Slurp 'read_file';
 
 use Code::Statistics::App;
 
@@ -25,12 +26,34 @@ sub make_fixture : Test(setup) {
 sub basic_collect : TestGroup {
     my ( $self ) = @_;
 
+    local @ARGV = @{ $self->{basic_collect_args} };
+
+    $self->check_codestat_shell_app_against( "data/json/basic_collect.json" );
+
+    ok( -e 'codestat.out', 'output file is generated' );
+
+    ok_regression(
+        sub { $self->get_codestat_out_file },
+        "data/json/basic_collect.json",
+        'dumped file matches expected output'
+    );
+
+    unlink( 'codestat.out' );
+
+    return;
+}
+
+sub nodump_collect : TestGroup {
+    my ( $self ) = @_;
+
     local @ARGV = (
         @{$self->{basic_collect_args}},
         qw( --no_dump )
     );
 
     $self->check_codestat_shell_app_against( "data/json/basic_collect.json" );
+
+    ok( !-e 'codestat.out', '--no_dump does not generate a file' );
 
     return;
 }
@@ -50,5 +73,9 @@ sub check_codestat_shell_app_against {
     return;
 }
 
+sub get_codestat_out_file {
+    my $result = read_file('codestat.out');
+    return $result;
+}
 
 1;
