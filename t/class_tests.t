@@ -10,4 +10,8 @@ BEGIN {
 use ShellTest;
 use Code::Statistics::ConfigTest;
 
+exit $ARGV[0]->runtests if $ARGV[0];
+
 Test::Class->runtests;
+
+exit;
