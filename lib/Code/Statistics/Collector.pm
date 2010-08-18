@@ -7,19 +7,13 @@ package Code::Statistics::Collector;
 
 use Moose;
 use MooseX::HasDefaults::RO;
-use Moose::Util::TypeConstraints;
+use Code::Statistics::MooseTypes;
 
 use File::Find::Rule::Perl;
 use Code::Statistics::File;
 use JSON 'to_json';
 use File::Slurp 'write_file';
 use Term::ProgressBar::Simple;
-
-subtype 'CS::InputList' => as 'ArrayRef';
-coerce 'CS::InputList' => from 'Str' => via {
-    my @list = split /;/, $_;
-    return \@list;
-};
 
 has no_dump => ( isa => 'Bool' );
 has relative_paths => ( isa => 'Bool' );
