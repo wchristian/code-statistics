@@ -7,5 +7,7 @@ BEGIN {
     use lib '../lib', '../blib/lib', 'lib';
 }
 
+use ShellTest;
 use Code::Statistics::ConfigTest;
-Code::Statistics::ConfigTest->runtests;
+
+Test::Class->runtests;

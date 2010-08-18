@@ -1,0 +1,69 @@
+[
+   {
+      "measurements" : {
+         "Block" : [
+            {
+               "size" : 72
+            }
+         ]
+      },
+      "path" : "config.t"
+   },
+   {
+      "measurements" : {
+         "Block" : [
+            {
+               "size" : 294
+            },
+            {
+               "size" : 120
+            }
+         ]
+      },
+      "path" : "lib/ShellTest.pm"
+   },
+   {
+      "measurements" : {
+         "Block" : [
+            {
+               "size" : 476
+            },
+            {
+               "size" : 587
+            },
+            {
+               "size" : 586
+            }
+         ]
+      },
+      "path" : "lib/Code/Statistics/ConfigTest.pm"
+   },
+   {
+      "measurements" : {
+         "Block" : [
+            {
+               "size" : 587
+            },
+            {
+               "size" : 9
+            },
+            {
+               "size" : 6
+            },
+            {
+               "size" : 9
+            },
+            {
+               "size" : 9
+            },
+            {
+               "size" : 122
+            },
+            {
+               "size" : 47
+            }
+         ]
+      },
+      "path" : "lib/Test/Class/TestGroup.pm"
+   }
+]
