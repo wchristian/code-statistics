@@ -22,6 +22,9 @@ coerce 'CS::InputList' => from 'Str' => via {
 };
 
 has no_dump => ( isa => 'Bool' );
+has relative_paths => ( isa => 'Bool' );
+has foreign_paths => ( isa => 'Str' );
+
 has dirs => (
     isa    => 'CS::InputList',
     coerce => 1,

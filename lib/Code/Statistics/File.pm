@@ -46,6 +46,12 @@ sub analyze {
 sub _format_file_path {
     my ( $self ) = @_;
     my $path = file( $self->{path} );
+    my $collector = $self->collector;
+
+    $path = $path->relative if $collector->relative_paths;
+    $path = $path->absolute if !$collector->relative_paths;
+
+    $path = $path->as_foreign( $collector->foreign_paths ) if $collector->foreign_paths;
 
     $self->{path} = $path->stringify;
     return;
