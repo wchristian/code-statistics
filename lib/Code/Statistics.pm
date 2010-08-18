@@ -7,6 +7,7 @@ package Code::Statistics;
 
 use Code::Statistics::Config;
 use Code::Statistics::Collector;
+use Code::Statistics::Reporter;
 
 use Moose;
 use MooseX::HasDefaults::RO;
@@ -39,6 +40,15 @@ sub _build_command_config {
 sub collect {
     my ( $self ) = @_;
     return Code::Statistics::Collector->new( $self->command_config )->collect;
+}
+
+=head2 report
+    Dispatches configuration to the statistics reporter module.
+=cut
+
+sub report {
+    my ( $self ) = @_;
+    return Code::Statistics::Reporter->new( $self->command_config )->report;
 }
 
 1;
