@@ -5,11 +5,14 @@ package Code::Statistics::Target::Block;
 
 # ABSTRACT: represents a block in perl code
 
-=head2 class
+=head2 find_targets
     Returns the PPI class name associated with this target.
 =cut
 
-sub class { return 'PPI::Structure::Block' }
+sub find_targets {
+    my ( $class, $file ) = @_;
+    return $file->ppi->find( 'PPI::Structure::Block' );
+}
 
 =head2 supports
     Returns the metrics this target supports.

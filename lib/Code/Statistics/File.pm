@@ -60,25 +60,16 @@ sub _format_file_path {
 sub _process_target_class {
     my ( $self, $target_type ) = @_;
 
-    my ( $ppi_class, @supported_metrics ) = $self->_get_target_class_data( $target_type );
+    my @supported_metrics = grep $self->_are_compatible( $target_type, $_ ), @{ $self->collector->metrics };
     return if !@supported_metrics;
 
-    my $targets = $self->ppi->find( $ppi_class );
+    my $targets = "Code::Statistics::Target::$target_type"->find_targets( $self );
     return if !$targets;
 
     my @measurements = map _measure_target( $_, @supported_metrics ), @{$targets};
     $self->{measurements}{$target_type} = \@measurements;
 
     return $self;
-}
-
-sub _get_target_class_data {
-    my ( $self, $target_type ) = @_;
-
-    my @supported_metrics = grep $self->_are_compatible( $target_type, $_ ), @{ $self->collector->metrics };
-    my $ppi_class         = "Code::Statistics::Target::$target_type"->class;
-
-    return ( $ppi_class, @supported_metrics );
 }
 
 sub _are_compatible {
