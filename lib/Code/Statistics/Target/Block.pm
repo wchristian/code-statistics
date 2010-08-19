@@ -6,7 +6,7 @@ package Code::Statistics::Target::Block;
 # ABSTRACT: represents a block in perl code
 
 =head2 find_targets
-    Returns the PPI class name associated with this target.
+    Returns the PPI Blocks found in the given file.
 =cut
 
 sub find_targets {
