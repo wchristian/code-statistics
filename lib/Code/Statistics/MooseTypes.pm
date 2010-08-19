@@ -3,6 +3,8 @@ use warnings;
 
 package Code::Statistics::MooseTypes;
 
+# ABSTRACT: provides coercion types for Code::Statistics
+
 use Moose::Util::TypeConstraints;
 
 subtype 'CS::InputList' => as 'ArrayRef';
