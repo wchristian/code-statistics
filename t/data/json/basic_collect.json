@@ -1,10 +1,23 @@
 [
    {
-      "measurements" : null,
+      "measurements" : {
+         "RootDocument" : [
+            {
+               "line" : 1,
+               "size" : 46
+            }
+         ]
+      },
       "path" : "data/shelltest/basic_collect/Empty.pm"
    },
    {
       "measurements" : {
+         "RootDocument" : [
+            {
+               "line" : 1,
+               "size" : 73
+            }
+         ],
          "Block" : [
             {
                "line" : 6,
