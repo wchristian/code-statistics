@@ -2,6 +2,9 @@
 use strict;
 use warnings;
 
+use Carp 'confess';
+$SIG{__DIE__} = \&confess;
+
 BEGIN {
     chdir 't' if -d 't';
     use lib '../lib', '../blib/lib', 'lib';
