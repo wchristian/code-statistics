@@ -11,7 +11,7 @@ use Code::Statistics::MooseTypes;
 
 use JSON 'from_json';
 use File::Slurp 'read_file';
-use List::Util qw( reduce );
+use List::Util qw( reduce max sum );
 use Data::Section -setup;
 use Template;
 
@@ -63,6 +63,11 @@ sub build_template {
 
     @columns = map {{ name => $_, width => 10 }} @columns;
 
+    for ( @columns ) {
+        $_->{printname} = ucfirst $_->{name};
+        $_->{printname} = " $_->{printname}" if $_->{name} ne 'path';
+    }
+
     return @columns;
 }
 
@@ -101,7 +106,6 @@ sub process_metric {
     return if !$target_type->{list}[0]{$metric};
 
     my @list = sort { $b->{$metric} <=> $a->{$metric} } @{$target_type->{list}};
-
     my @top = grep { defined } @list[0 .. 9];
 
     my $metric_data = {
@@ -112,7 +116,31 @@ sub process_metric {
     $metric_data->{bottom} = $self->get_bottom( @list ) if @list > 10;
     $metric_data->{avg} = $self->calc_average( $metric, @list );
 
+    $metric_data->{widths} = $self->calc_widths( $metric_data->{bottom}, @top );
+
     return $metric_data;
+}
+
+sub calc_widths {
+    my ( $self, $bottom, @list ) = @_;
+
+    @list = ( @list, @{$bottom} ) if $bottom;
+
+    my @columns = keys %{$list[0]};
+
+    my %widths;
+    for my $col ( @columns ) {
+        my @lengths = map { length $_->{$col} } @list, { $col => $col };
+        my $max = max @lengths;
+        $widths{$col} = $max;
+    }
+
+    $_++ for values %widths;
+    my $used_width = sum( values %widths ) - $widths{path};
+    my $path_width = 80-$used_width;
+    $widths{path} = max( 12, $path_width );
+
+    return \%widths;
 }
 
 sub is_only_loc_metric {
@@ -162,11 +190,19 @@ __[ dos_template ]__
         [%- FOR metric IN target.metrics %]
             [%- table_mode %] ten
 
-            [%- FOR column IN columns %][% column.name FILTER format("%${column.width}s") %][% END %]
+            [%- FOR column IN columns -%]
+                [%- width = metric.widths.${column.name} -%]
+                [%- column.printname FILTER format("%-${width}s") -%]
+            [%- END %]
 
             [%- FOR line IN metric.$table_mode -%]
-                [%- FOR column IN columns %]
-                    [%- truncate_front( line.${column.name}, column.width ) FILTER format("%${column.width}s") %]
+                [%- FOR column IN columns -%]
+                    [%- width = metric.widths.${column.name} -%]
+                    [%- IF column.name == 'path' -%]
+                        [%- truncate_front( line.${column.name}, width ) FILTER format("%-${width}s") -%]
+                    [%- ELSE -%]
+                        [%- line.${column.name} FILTER format("%${width}s") -%]
+                    [%- END -%]
                 [%- END %]
 
             [%- END %]
