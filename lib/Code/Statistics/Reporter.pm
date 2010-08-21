@@ -58,7 +58,7 @@ sub build_template {
 
     my %metrics = map { $_ => 1 } 'path', @{$stats->{metrics}};
 
-    my @columns = grep { $metrics{$_} } qw( path line );
+    my @columns = grep { $metrics{$_} } qw( path line col );
     delete $metrics{$_} for @columns;
 
     @columns = ( @columns, keys %metrics );
@@ -149,6 +149,7 @@ sub calc_widths {
 sub is_only_loc_metric {
     my ( $self, $metric ) = @_;
     return 1 if $metric eq 'line';
+    return 1 if $metric eq 'col';
     return 0;
 }
 

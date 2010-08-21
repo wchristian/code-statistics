@@ -16,7 +16,7 @@ sub opt_spec {
         [ 'relative_paths' => 'switches file paths in dump from absolute to relative format' ],
         [ 'foreign_paths=s' => 'switches file paths in dump from native to indicated system format; see File::Spec for options', { default => '' } ],
         [ 'targets=s' => 'specifies targets that will be looked for inside of files; see C::S::Target::*', { default => 'RootDocument;Block' } ],
-        [ 'metrics=s' => 'specifies metrics that be tried to be measured on targets; see C::S::Metric::*', { default => 'size;line' } ],
+        [ 'metrics=s' => 'specifies metrics that be tried to be measured on targets; see C::S::Metric::*', { default => 'size;line;col;lines' } ],
     );
     return @opts;
 }
