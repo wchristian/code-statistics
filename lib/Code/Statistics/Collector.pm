@@ -8,6 +8,7 @@ package Code::Statistics::Collector;
 use Moose;
 use MooseX::HasDefaults::RO;
 use Code::Statistics::MooseTypes;
+use Code::Statistics::SlurpyConstructor;
 
 use File::Find::Rule::Perl;
 use Code::Statistics::File;
@@ -16,8 +17,6 @@ use File::Slurp 'write_file';
 use Term::ProgressBar::Simple;
 
 has no_dump => ( isa => 'Bool' );
-has relative_paths => ( isa => 'Bool' );
-has foreign_paths => ( isa => 'Str' );
 
 has dirs => (
     isa    => 'CS::InputList',
@@ -50,6 +49,11 @@ has progress_bar => (
         $params->{count} = @{ $_[0]->files };
         return Term::ProgressBar::Simple->new( $params );
     },
+);
+
+has command_args => (
+    is      => 'ro',
+    slurpy  => 1,
 );
 
 =head2 collect
@@ -91,10 +95,10 @@ sub _prepare_file {
         path      => $path,
         targets   => $self->targets,
         metrics   => $self->metrics,
-        collector => $self,
+        progress => sub { $self->progress_bar->increment },
     );
 
-    return Code::Statistics::File->new( %params );
+    return Code::Statistics::File->new( %params, %{$self->command_args} );
 }
 
 sub _dump_file_measurements {

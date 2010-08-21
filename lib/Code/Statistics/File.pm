@@ -7,18 +7,27 @@ package Code::Statistics::File;
 
 use Moose;
 use MooseX::HasDefaults::RO;
+use Code::Statistics::MooseTypes;
 
 use PPI::Document;
 use Path::Class qw(file);
+
+has relative_paths => ( isa => 'Bool' );
+has foreign_paths => ( isa => 'Str' );
 
 has path => (
     isa      => 'Str',
     required => 1,
 );
 
-has collector => (
-    isa      => 'Code::Statistics::Collector',
-    required => 1,
+has targets => (
+    isa     => 'CS::InputList',
+    coerce  => 1,
+);
+
+has metrics => (
+    isa     => 'CS::InputList',
+    coerce  => 1,
 );
 
 has ppi => (
@@ -29,6 +38,8 @@ has ppi => (
     },
 );
 
+has progress => ( isa => 'CodeRef' );
+
 =head2 analyze
     Finds targets in the given file and collects the metrics on those.
 =cut
@@ -36,9 +47,9 @@ has ppi => (
 sub analyze {
     my ( $self ) = @_;
 
-    $self->_process_target_class( $_ ) for @{ $self->collector->targets };
+    $self->_process_target_class( $_ ) for @{ $self->targets };
     $self->_format_file_path;
-    $self->collector->progress_bar->increment;
+    $self->progress;
 
     return $self;
 }
@@ -46,12 +57,11 @@ sub analyze {
 sub _format_file_path {
     my ( $self ) = @_;
     my $path = file( $self->path );
-    my $collector = $self->collector;
 
-    $path = $path->relative if $collector->relative_paths;
-    $path = $path->absolute if !$collector->relative_paths;
+    $path = $path->relative if $self->relative_paths;
+    $path = $path->absolute if !$self->relative_paths;
 
-    $path = $path->as_foreign( $collector->foreign_paths ) if $collector->foreign_paths;
+    $path = $path->as_foreign( $self->foreign_paths ) if $self->foreign_paths;
 
     $self->{path} = $path->stringify;
     return $self;
@@ -60,7 +70,7 @@ sub _format_file_path {
 sub _process_target_class {
     my ( $self, $target_type ) = @_;
 
-    my @supported_metrics = grep $self->_are_compatible( $target_type, $_ ), @{ $self->collector->metrics };
+    my @supported_metrics = grep $self->_are_compatible( $target_type, $_ ), @{ $self->metrics };
     return if !@supported_metrics;
 
     my $targets = "Code::Statistics::Target::$target_type"->find_targets( $self );
