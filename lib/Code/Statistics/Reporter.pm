@@ -107,6 +107,7 @@ sub process_metric {
 
     my @list = sort { $b->{$metric} <=> $a->{$metric} } @{$target_type->{list}};
     my @top = grep { defined } @list[0 .. 9];
+    @list = grep { defined } @list; # the above autovivifies some entries, this reverses that
 
     my $metric_data = {
         top => \@top,
@@ -163,6 +164,7 @@ sub get_bottom {
 
     @list = reverse @list;
     my @bottom = @list[ 0 .. 9 ];
+    @list = grep { defined } @list; # the above autovivifies some entries, this reverses that
 
     my $bottom_size = @list - 10;
     @bottom = splice( @bottom, 0, $bottom_size ) if $bottom_size < 10;
