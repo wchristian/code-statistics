@@ -188,8 +188,9 @@ __[ dos_template ]__
 
     [%- END %]
 
-    [%- FOR table_mode IN [ 'top', 'bottom' ] %]
-        [%- FOR metric IN target.metrics %]
+    [%- FOR metric IN target.metrics %]
+        [%- FOR table_mode IN [ 'top', 'bottom' ] %]
+            [%- NEXT IF !metric.$table_mode.size -%]
             [%- table_mode %] ten
 
             [%- FOR column IN columns -%]
