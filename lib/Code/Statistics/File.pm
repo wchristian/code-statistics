@@ -49,7 +49,7 @@ sub analyze {
 
     $self->_process_target_class( $_ ) for @{ $self->targets };
     $self->_format_file_path;
-    $self->progress;
+    $self->progress->();
 
     return $self;
 }
