@@ -15,6 +15,8 @@ use List::Util qw( reduce max sum );
 use Data::Section -setup;
 use Template;
 
+has quiet => ( isa => 'Bool' );
+
 =head2 reports
     Creates a report on given code statistics and outputs it in some way.
 =cut
@@ -46,9 +48,9 @@ sub report {
         \$output
     ) or die $tt->error;
 
-    print $output;
+    print $output if !$self->quiet;
 
-    return $self;
+    return $output;
 }
 
 sub build_template {

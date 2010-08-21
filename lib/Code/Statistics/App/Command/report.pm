@@ -11,6 +11,7 @@ sub abstract { return 'create reports on statistics and output them' }
 
 sub opt_spec {
     my @opts = (
+        [ 'quiet' => 'prevents writing of report to screen' ],
     );
     return @opts;
 }
