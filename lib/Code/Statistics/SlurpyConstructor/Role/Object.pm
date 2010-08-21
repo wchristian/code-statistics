@@ -23,13 +23,12 @@ around new => sub {
     # remove any that are defined as init_args for any attributes
     delete @slurpy_args{ @init_args };
 
-    my %init_args = map { $_ => $args->{ $_ } } @init_args;
-
     my $slurpy_attr = find_slurpy_attr( $class );
     my $init_arg = $slurpy_attr->init_arg;
+    my %init_args = map filter_final_init_arg( $args, $init_arg, $_ ), @init_args;
+
     if ( defined $init_arg and defined $init_args{ $init_arg } ) {
         my $name = $slurpy_attr->name;
-
         die( "Can't assign to '$init_arg', as it's slurpy init_arg for attribute '$name'" );
     }
 
@@ -43,6 +42,14 @@ around new => sub {
 
     return $self;
 };
+
+sub filter_final_init_arg {
+    my ( $args, $slurpy_name, $arg_name ) = @_;
+
+    return if !exists $args->{$arg_name} and $slurpy_name ne $arg_name;
+
+    return ( $arg_name => $args->{$arg_name} );
+}
 
 sub find_slurpy_attr {
     my ( $class ) = @_;
