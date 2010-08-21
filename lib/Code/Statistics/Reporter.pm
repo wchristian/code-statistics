@@ -38,6 +38,10 @@ sub report {
         {
             columns => \@columns,
             targets => $stats->{target_types},
+            truncate_front => sub {
+                return $_[0] if length($_[0]) <= $_[1];
+                return substr( $_[0], -1 * $_[1], $_[1] )
+            },
         },
         \$output
     ) or die $tt->error;
@@ -158,11 +162,11 @@ __[ dos_template ]__
         [%- FOR metric IN target.metrics %]
             [%- table_mode %] ten
 
-            [%- FOR column IN columns %][% column.name %] - [% END %]
+            [%- FOR column IN columns %][% column.name FILTER format("%${column.width}s") %][% END %]
 
             [%- FOR line IN metric.$table_mode -%]
                 [%- FOR column IN columns %]
-                    [%- " " _ line.${column.name} %]
+                    [%- truncate_front( line.${column.name}, column.width ) FILTER format("%${column.width}s") %]
                 [%- END %]
 
             [%- END %]
