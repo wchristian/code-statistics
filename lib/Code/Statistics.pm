@@ -11,25 +11,16 @@ use Code::Statistics::Reporter;
 
 use Moose;
 use MooseX::HasDefaults::RO;
+use Code::Statistics::SlurpyConstructor;
 
-has args => ( isa => 'HashRef', );
-
-has command => ( isa => 'Str', );
-
-has conf_file => ( isa => 'Str', );
-
-has global_conf_file => ( isa => 'Str', );
-
-has profile => ( isa => 'Str', );
-
-has command_config => (
-    isa     => 'HashRef',
-    default => \&_build_command_config,
+has config_args => (
+    is      => 'ro',
+    slurpy  => 1,
 );
 
-sub _build_command_config {
+sub _command_config {
     my ( $self ) = @_;
-    my $config = Code::Statistics::Config->new( cstat => $self )->assemble;
+    my $config = Code::Statistics::Config->new( %{ $self->config_args } )->assemble;
     return $config;
 }
 
@@ -39,7 +30,7 @@ sub _build_command_config {
 
 sub collect {
     my ( $self ) = @_;
-    return Code::Statistics::Collector->new( $self->command_config )->collect;
+    return Code::Statistics::Collector->new( $self->_command_config )->collect;
 }
 
 =head2 report
@@ -48,7 +39,7 @@ sub collect {
 
 sub report {
     my ( $self ) = @_;
-    return Code::Statistics::Reporter->new( $self->command_config )->report;
+    return Code::Statistics::Reporter->new( $self->_command_config )->report;
 }
 
 1;

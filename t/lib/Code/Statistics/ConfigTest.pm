@@ -8,22 +8,19 @@ use lib '../..';
 use parent 'Test::Class::TestGroup';
 
 use Test::More;
-use Test::MockObject;
 
 use Code::Statistics::Config;
 
 sub make_fixtures : Test(setup) {
     my ( $self ) = @_;
 
-    my $cstat = Test::MockObject->new;
-    $cstat->set_isa( 'Code::Statistics' );
-    $cstat->set_always( 'global_conf_file', 'data/config/globalcodestatrc' );
-    $cstat->set_always( 'conf_file',        'data/config/codestatrc' );
-    $cstat->set_always( 'command',          'collect' );
-    $cstat->set_always( 'profile',          'test' );
-    $cstat->set_always( 'args', { overridden_by_args => 7 } );
-
-    $self->{cstat} = $cstat;
+    $self->{conf_args} = {
+        global_conf_file => 'data/config/globalcodestatrc',
+        conf_file =>        'data/config/codestatrc',
+        command =>        'collect',
+        profile =>        'test',
+        args =>        { overridden_by_args => 7 },
+    };
 
     return;
 }
@@ -31,10 +28,7 @@ sub make_fixtures : Test(setup) {
 sub overrides_basic : TestGroup(configuration overrides work if all config inputs are present and active) {
     my ( $self ) = @_;
 
-    my $cstat = $self->{cstat};
-    $cstat->set_always( 'profile', 'test' );
-
-    my $config = Code::Statistics::Config->new( cstat => $cstat )->assemble;
+    my $config = Code::Statistics::Config->new( $self->{conf_args} )->assemble;
 
     my %options = (
         global_setting              => 1,
@@ -54,10 +48,9 @@ sub overrides_basic : TestGroup(configuration overrides work if all config input
 sub overrides_no_profile : TestGroup(configuration overrides work if all no profile is given) {
     my ( $self ) = @_;
 
-    my $cstat = $self->{cstat};
-    $cstat->set_always( 'profile', undef );
+    delete $self->{conf_args}{profile};
 
-    my $config = Code::Statistics::Config->new( cstat => $cstat )->assemble;
+    my $config = Code::Statistics::Config->new( $self->{conf_args} )->assemble;
 
     my %options = (
         global_setting              => 1,
