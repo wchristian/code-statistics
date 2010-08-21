@@ -25,21 +25,7 @@ around new => sub {
 
     my %init_args = map { $_ => $args->{ $_ } } @init_args;
 
-    # find all attributes marked slurpy
-    my @slurpy_attrs =
-      grep { $_->slurpy }
-      $class->meta->get_all_attributes;
-
-    # and ensure that we have one
-    my $slurpy_attr = shift @slurpy_attrs;
-    if ( not defined $slurpy_attr ) {
-        Moose->throw_error( "No parameters marked 'slurpy', do you need this module?" );
-    } elsif ( scalar @slurpy_attrs ) {
-        # this should never happen, as there should only ever be a single
-        # slurpy attribute
-        die "Something strange here - There should never be more than a single slurpy argument, please report a bug, with test case";
-    }
-
+    my $slurpy_attr = find_slurpy_attr( $class );
     my $init_arg = $slurpy_attr->init_arg;
     if ( defined $init_arg and defined $init_args{ $init_arg } ) {
         my $name = $slurpy_attr->name;
@@ -57,6 +43,23 @@ around new => sub {
 
     return $self;
 };
+
+sub find_slurpy_attr {
+    my ( $class ) = @_;
+
+    # find all attributes marked slurpy
+    my @slurpy_attrs =
+        grep { $_->slurpy }
+        $class->meta->get_all_attributes;
+
+    # and ensure that we have one
+    my $slurpy_attr = shift @slurpy_attrs;
+
+    Moose->throw_error( "No parameters marked 'slurpy', do you need this module?" ) if !defined $slurpy_attr;
+    die "Something strange here - There should never be more than a single slurpy argument, please report a bug, with test case" if @slurpy_attrs;
+
+    return $slurpy_attr;
+}
 
 no Moose::Role;
 
