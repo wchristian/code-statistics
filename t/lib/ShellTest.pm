@@ -41,6 +41,10 @@ sub basic_collect : TestGroup {
         'dumped file matches expected output'
     );
 
+    @ARGV = qw( report --quiet );
+
+    $self->check_codestat_shell_app_against( "data/json/basic_report.json" );
+
     unlink( 'codestat.out' );
 
     return;
