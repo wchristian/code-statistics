@@ -1,30 +1,40 @@
-[
-   {
-      "measurements" : {
-         "RootDocument" : [
-            {
-               "line" : 1,
-               "size" : 46
-            }
-         ]
+{
+   "targets" : [
+      "RootDocument",
+      "Block"
+   ],
+   "files" : [
+      {
+         "measurements" : {
+            "RootDocument" : [
+               {
+                  "line" : 1,
+                  "size" : 46
+               }
+            ]
+         },
+         "path" : "data/shelltest/basic_collect/Empty.pm"
       },
-      "path" : "data/shelltest/basic_collect/Empty.pm"
-   },
-   {
-      "measurements" : {
-         "RootDocument" : [
-            {
-               "line" : 1,
-               "size" : 73
-            }
-         ],
-         "Block" : [
-            {
-               "line" : 6,
-               "size" : 15
-            }
-         ]
-      },
-      "path" : "data/shelltest/basic_collect/OneSub.pm"
-   }
-]
+      {
+         "measurements" : {
+            "RootDocument" : [
+               {
+                  "line" : 1,
+                  "size" : 73
+               }
+            ],
+            "Block" : [
+               {
+                  "line" : 6,
+                  "size" : 15
+               }
+            ]
+         },
+         "path" : "data/shelltest/basic_collect/OneSub.pm"
+      }
+   ],
+   "metrics" : [
+      "size",
+      "line"
+   ]
+}

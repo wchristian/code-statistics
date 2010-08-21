@@ -115,7 +115,13 @@ sub _measurements_as_json {
 
     my @files = map $self->_strip_file( $_ ), @{ $self->files };
 
-    my $json = to_json( \@files, { pretty => 1 } );
+    my $measurements = {
+        files => \@files,
+        targets => $self->targets,
+        metrics => $self->metrics,
+    };
+
+    my $json = to_json( $measurements, { pretty => 1 } );
 
     return $json;
 }
