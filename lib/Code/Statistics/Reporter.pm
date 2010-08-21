@@ -191,6 +191,9 @@ __[ dos_template ]__
     [%- END %]
 
     [%- FOR metric IN target.metrics %]
+
+        [%- metric.type %]
+
         [%- FOR table_mode IN [ 'top', 'bottom' ] %]
             [%- NEXT IF !metric.$table_mode.size -%]
             [%- table_mode %] ten
