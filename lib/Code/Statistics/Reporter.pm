@@ -115,7 +115,7 @@ sub process_metric {
 
     $metric_data->{bottom} = $self->get_bottom( @list );
     $metric_data->{avg} = $self->calc_average( $metric, @list );
-    $metric_data->{widths} = $self->calc_widths( $metric_data->{bottom}, @top );
+    $metric_data->{widths} = $self->calc_widths( @{$metric_data->{bottom}}, @top );
     $metric_data->{columns} = $self->sort_columns( %{ $metric_data->{widths} } );
 
     return $metric_data;
@@ -123,8 +123,6 @@ sub process_metric {
 
 sub calc_widths {
     my ( $self, $bottom, @list ) = @_;
-
-    @list = ( @list, @{$bottom} ) if $bottom;
 
     my @columns = keys %{$list[0]};
 
