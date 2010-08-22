@@ -117,17 +117,44 @@ sub _measurements_as_json {
     my ( $self ) = @_;
 
     my @files = map $self->_strip_file( $_ ), @{ $self->files };
+    my @ignored_files = $self->_find_ignored_files( @files );
 
     my $measurements = {
         files => \@files,
         targets => $self->targets,
         metrics => $self->metrics,
+        ignored_files => \@ignored_files
     };
 
     my $json = to_json( $measurements, { pretty => 1 } );
 
     return $json;
 }
+
+sub _find_ignored_files {
+    my ( $self, @files ) = @_;
+
+    my %present_files = map { $_ => 1 } $self->_find_files; # TODO : have files store their original path too?
+
+    my @all_files = File::Find::Rule->file->in( @{ $self->dirs } );
+    @all_files = grep { !$present_files{$_} } @all_files;
+    my $useless_stuff = qr@
+        (^|/)
+            (
+                \.git   |   \.svn   |   cover_db   |   \.build   |   nytprof   |
+                blib
+            )
+        /
+    @x;
+    @all_files = grep { $_ !~ $useless_stuff } @all_files; # filter out files we most certainly do not care about
+
+    return @all_files;
+}
+
+=head2 _strip_file
+    Cuts down a file hash to have only the keys we actually want to dump to the
+    json file.
+=cut
 
 sub _strip_file {
     my ( $self, $file ) = @_;
