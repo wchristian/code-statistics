@@ -9,8 +9,6 @@ use App::Cmd::Setup -app;
 
 use Code::Statistics;
 
-use File::HomeDir;
-
 sub global_opt_spec {
     my @opts             = (
         [ 'global_conf_file|g=s' => 'path to the global config file' ],

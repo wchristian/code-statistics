@@ -11,6 +11,7 @@ use MooseX::HasDefaults::RO;
 use Hash::Merge qw( merge );
 use Config::INI::Reader;
 use Path::Class qw(file);
+use File::HomeDir;
 
 has args => ( isa => 'HashRef', default => sub {{}} );
 
