@@ -113,7 +113,7 @@ sub process_metric {
         type => $metric,
     };
 
-    $metric_data->{bottom} = $self->get_bottom( @list ) if @list > 10;
+    $metric_data->{bottom} = $self->get_bottom( @list );
     $metric_data->{avg} = $self->calc_average( $metric, @list );
     $metric_data->{widths} = $self->calc_widths( $metric_data->{bottom}, @top );
     $metric_data->{columns} = $self->sort_columns( %{ $metric_data->{widths} } );
@@ -158,6 +158,8 @@ sub calc_average {
 
 sub get_bottom {
     my ( $self, @list ) = @_;
+
+    return [] if @list < 10;
 
     @list = reverse @list;
     my @bottom = @list[ 0 .. 9 ];
