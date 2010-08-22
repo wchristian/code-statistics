@@ -1,7 +1,8 @@
 {
    "targets" : [
       "RootDocument",
-      "Block"
+      "Block",
+      "Sub"
    ],
    "files" : [
       {
@@ -34,15 +35,232 @@
                   "line" : 6,
                   "size" : 15
                }
+            ],
+            "Sub" : [
+               {
+                  "col" : 1,
+                  "lines" : 3,
+                  "line" : 6,
+                  "size" : 24
+               }
             ]
          },
          "path" : "data/shelltest/basic_collect/OneSub.pm"
+      },
+      {
+         "measurements" : {
+            "RootDocument" : [
+               {
+                  "col" : 1,
+                  "lines" : 71,
+                  "line" : 1,
+                  "size" : 625
+               }
+            ],
+            "Block" : [
+               {
+                  "col" : 22,
+                  "lines" : 20,
+                  "line" : 6,
+                  "size" : 234
+               },
+               {
+                  "col" : 12,
+                  "lines" : 17,
+                  "line" : 7,
+                  "size" : 207
+               },
+               {
+                  "col" : 12,
+                  "lines" : 15,
+                  "line" : 8,
+                  "size" : 188
+               },
+               {
+                  "col" : 12,
+                  "lines" : 13,
+                  "line" : 9,
+                  "size" : 169
+               },
+               {
+                  "col" : 12,
+                  "lines" : 11,
+                  "line" : 10,
+                  "size" : 150
+               },
+               {
+                  "col" : 16,
+                  "lines" : 9,
+                  "line" : 11,
+                  "size" : 127
+               },
+               {
+                  "col" : 20,
+                  "lines" : 7,
+                  "line" : 12,
+                  "size" : 100
+               },
+               {
+                  "col" : 24,
+                  "lines" : 5,
+                  "line" : 13,
+                  "size" : 69
+               },
+               {
+                  "col" : 28,
+                  "lines" : 3,
+                  "line" : 14,
+                  "size" : 34
+               },
+               {
+                  "col" : 13,
+                  "lines" : 3,
+                  "line" : 27,
+                  "size" : 15
+               },
+               {
+                  "col" : 13,
+                  "lines" : 3,
+                  "line" : 31,
+                  "size" : 15
+               },
+               {
+                  "col" : 13,
+                  "lines" : 3,
+                  "line" : 35,
+                  "size" : 15
+               },
+               {
+                  "col" : 13,
+                  "lines" : 3,
+                  "line" : 39,
+                  "size" : 15
+               },
+               {
+                  "col" : 13,
+                  "lines" : 3,
+                  "line" : 43,
+                  "size" : 15
+               },
+               {
+                  "col" : 13,
+                  "lines" : 3,
+                  "line" : 47,
+                  "size" : 15
+               },
+               {
+                  "col" : 13,
+                  "lines" : 3,
+                  "line" : 51,
+                  "size" : 15
+               },
+               {
+                  "col" : 13,
+                  "lines" : 3,
+                  "line" : 55,
+                  "size" : 15
+               },
+               {
+                  "col" : 13,
+                  "lines" : 3,
+                  "line" : 59,
+                  "size" : 15
+               },
+               {
+                  "col" : 13,
+                  "lines" : 3,
+                  "line" : 63,
+                  "size" : 15
+               },
+               {
+                  "col" : 13,
+                  "lines" : 3,
+                  "line" : 67,
+                  "size" : 15
+               }
+            ],
+            "Sub" : [
+               {
+                  "col" : 1,
+                  "lines" : 20,
+                  "line" : 6,
+                  "size" : 255
+               },
+               {
+                  "col" : 1,
+                  "lines" : 3,
+                  "line" : 27,
+                  "size" : 27
+               },
+               {
+                  "col" : 1,
+                  "lines" : 3,
+                  "line" : 31,
+                  "size" : 27
+               },
+               {
+                  "col" : 1,
+                  "lines" : 3,
+                  "line" : 35,
+                  "size" : 27
+               },
+               {
+                  "col" : 1,
+                  "lines" : 3,
+                  "line" : 39,
+                  "size" : 27
+               },
+               {
+                  "col" : 1,
+                  "lines" : 3,
+                  "line" : 43,
+                  "size" : 27
+               },
+               {
+                  "col" : 1,
+                  "lines" : 3,
+                  "line" : 47,
+                  "size" : 27
+               },
+               {
+                  "col" : 1,
+                  "lines" : 3,
+                  "line" : 51,
+                  "size" : 27
+               },
+               {
+                  "col" : 1,
+                  "lines" : 3,
+                  "line" : 55,
+                  "size" : 27
+               },
+               {
+                  "col" : 1,
+                  "lines" : 3,
+                  "line" : 59,
+                  "size" : 27
+               },
+               {
+                  "col" : 1,
+                  "lines" : 3,
+                  "line" : 63,
+                  "size" : 27
+               },
+               {
+                  "col" : 1,
+                  "lines" : 3,
+                  "line" : 67,
+                  "size" : 27
+               }
+            ]
+         },
+         "path" : "data/shelltest/basic_collect/SomeSubs.pm"
       }
    ],
    "metrics" : [
+      "lines",
       "size",
       "line",
-      "col",
-      "lines"
+      "col"
    ]
 }
