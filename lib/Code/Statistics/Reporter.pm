@@ -174,9 +174,15 @@ sub get_bottom {
 __DATA__
 __[ dos_template ]__
 
-[% FOR target IN targets %]
+================================================================================
+                            Code Statistics Report
+================================================================================
 
-    [%- target.type %]
+[% FOR target IN targets %]
+================================================================================
+
+    [%- " " FILTER repeat( ( 80 - target.type.length ) / 2 ) %][% target.type %]
+
 
     [%- "averages" %]
 
@@ -187,7 +193,7 @@ __[ dos_template ]__
 
     [%- FOR metric IN target.metrics %]
 
-        [%- metric.type %]
+        [%- " " FILTER repeat( ( 80 - metric.type.length ) / 2 ) %][% metric.type %]
 
         [%- FOR table_mode IN [ 'top', 'bottom' ] %]
             [%- NEXT IF !metric.$table_mode.size -%]
@@ -196,6 +202,7 @@ __[ dos_template ]__
             [%- FOR column IN metric.columns -%]
                 [%- column.printname FILTER format("%-${column.width}s") -%]
             [%- END %]
+--------------------------------------------------------------------------------
 
             [%- FOR line IN metric.$table_mode -%]
                 [%- FOR column IN metric.columns -%]
@@ -207,8 +214,10 @@ __[ dos_template ]__
                 [%- END %]
 
             [%- END %]
+--------------------------------------------------------------------------------
+
 
         [%- END %]
     [%- END -%]
-
+================================================================================
 [%- END -%]
