@@ -10,6 +10,7 @@
             "RootDocument" : [
                {
                   "col" : 1,
+                  "sdepth" : 0,
                   "lines" : 6,
                   "line" : 1,
                   "size" : 46
@@ -23,6 +24,7 @@
             "RootDocument" : [
                {
                   "col" : 1,
+                  "sdepth" : 0,
                   "lines" : 10,
                   "line" : 1,
                   "size" : 73
@@ -31,6 +33,7 @@
             "Block" : [
                {
                   "col" : 10,
+                  "sdepth" : 2,
                   "lines" : 3,
                   "line" : 6,
                   "size" : 15
@@ -39,6 +42,7 @@
             "Sub" : [
                {
                   "col" : 1,
+                  "sdepth" : 1,
                   "lines" : 3,
                   "line" : 6,
                   "size" : 24
@@ -52,6 +56,7 @@
             "RootDocument" : [
                {
                   "col" : 1,
+                  "sdepth" : 0,
                   "lines" : 71,
                   "line" : 1,
                   "size" : 625
@@ -60,120 +65,140 @@
             "Block" : [
                {
                   "col" : 22,
+                  "sdepth" : 2,
                   "lines" : 20,
                   "line" : 6,
                   "size" : 234
                },
                {
                   "col" : 12,
+                  "sdepth" : 4,
                   "lines" : 17,
                   "line" : 7,
                   "size" : 207
                },
                {
                   "col" : 12,
+                  "sdepth" : 6,
                   "lines" : 15,
                   "line" : 8,
                   "size" : 188
                },
                {
                   "col" : 12,
+                  "sdepth" : 8,
                   "lines" : 13,
                   "line" : 9,
                   "size" : 169
                },
                {
                   "col" : 12,
+                  "sdepth" : 10,
                   "lines" : 11,
                   "line" : 10,
                   "size" : 150
                },
                {
                   "col" : 16,
+                  "sdepth" : 12,
                   "lines" : 9,
                   "line" : 11,
                   "size" : 127
                },
                {
                   "col" : 20,
+                  "sdepth" : 14,
                   "lines" : 7,
                   "line" : 12,
                   "size" : 100
                },
                {
                   "col" : 24,
+                  "sdepth" : 16,
                   "lines" : 5,
                   "line" : 13,
                   "size" : 69
                },
                {
                   "col" : 28,
+                  "sdepth" : 18,
                   "lines" : 3,
                   "line" : 14,
                   "size" : 34
                },
                {
                   "col" : 13,
+                  "sdepth" : 2,
                   "lines" : 3,
                   "line" : 27,
                   "size" : 15
                },
                {
                   "col" : 13,
+                  "sdepth" : 2,
                   "lines" : 3,
                   "line" : 31,
                   "size" : 15
                },
                {
                   "col" : 13,
+                  "sdepth" : 2,
                   "lines" : 3,
                   "line" : 35,
                   "size" : 15
                },
                {
                   "col" : 13,
+                  "sdepth" : 2,
                   "lines" : 3,
                   "line" : 39,
                   "size" : 15
                },
                {
                   "col" : 13,
+                  "sdepth" : 2,
                   "lines" : 3,
                   "line" : 43,
                   "size" : 15
                },
                {
                   "col" : 13,
+                  "sdepth" : 2,
                   "lines" : 3,
                   "line" : 47,
                   "size" : 15
                },
                {
                   "col" : 13,
+                  "sdepth" : 2,
                   "lines" : 3,
                   "line" : 51,
                   "size" : 15
                },
                {
                   "col" : 13,
+                  "sdepth" : 2,
                   "lines" : 3,
                   "line" : 55,
                   "size" : 15
                },
                {
                   "col" : 13,
+                  "sdepth" : 2,
                   "lines" : 3,
                   "line" : 59,
                   "size" : 15
                },
                {
                   "col" : 13,
+                  "sdepth" : 2,
                   "lines" : 3,
                   "line" : 63,
                   "size" : 15
                },
                {
                   "col" : 13,
+                  "sdepth" : 2,
                   "lines" : 3,
                   "line" : 67,
                   "size" : 15
@@ -182,72 +207,84 @@
             "Sub" : [
                {
                   "col" : 1,
+                  "sdepth" : 1,
                   "lines" : 20,
                   "line" : 6,
                   "size" : 255
                },
                {
                   "col" : 1,
+                  "sdepth" : 1,
                   "lines" : 3,
                   "line" : 27,
                   "size" : 27
                },
                {
                   "col" : 1,
+                  "sdepth" : 1,
                   "lines" : 3,
                   "line" : 31,
                   "size" : 27
                },
                {
                   "col" : 1,
+                  "sdepth" : 1,
                   "lines" : 3,
                   "line" : 35,
                   "size" : 27
                },
                {
                   "col" : 1,
+                  "sdepth" : 1,
                   "lines" : 3,
                   "line" : 39,
                   "size" : 27
                },
                {
                   "col" : 1,
+                  "sdepth" : 1,
                   "lines" : 3,
                   "line" : 43,
                   "size" : 27
                },
                {
                   "col" : 1,
+                  "sdepth" : 1,
                   "lines" : 3,
                   "line" : 47,
                   "size" : 27
                },
                {
                   "col" : 1,
+                  "sdepth" : 1,
                   "lines" : 3,
                   "line" : 51,
                   "size" : 27
                },
                {
                   "col" : 1,
+                  "sdepth" : 1,
                   "lines" : 3,
                   "line" : 55,
                   "size" : 27
                },
                {
                   "col" : 1,
+                  "sdepth" : 1,
                   "lines" : 3,
                   "line" : 59,
                   "size" : 27
                },
                {
                   "col" : 1,
+                  "sdepth" : 1,
                   "lines" : 3,
                   "line" : 63,
                   "size" : 27
                },
                {
                   "col" : 1,
+                  "sdepth" : 1,
                   "lines" : 3,
                   "line" : 67,
                   "size" : 27
@@ -259,6 +296,7 @@
    ],
    "metrics" : [
       "lines",
+      "sdepth",
       "size",
       "line",
       "col"
