@@ -67,4 +67,26 @@ sub overrides_no_profile : TestGroup(configuration overrides work if all no prof
     return;
 }
 
+sub overrides_no_file : TestGroup(configuration overrides work if a file argument is empty) {
+    my ( $self ) = @_;
+
+    $self->{conf_args}{conf_file} = '';
+
+    my $config = Code::Statistics::Config->new( $self->{conf_args} )->assemble;
+
+    my %options = (
+        global_setting              => 1,
+        overridden_by_command       => 2,
+        overridden_by_profile       => 3,
+        overridden_by_local         => 3,
+        overridden_by_local_command => 3,
+        overridden_by_local_profile => 3,
+        overridden_by_args          => 7,
+    );
+
+    is( $config->{$_}, $options{$_}, "$_ works" ) for keys %options;
+
+    return;
+}
+
 1;
