@@ -10,14 +10,11 @@ use App::Cmd::Setup -app;
 use Code::Statistics;
 
 use File::HomeDir;
-use Path::Class qw(file);
 
 sub global_opt_spec {
-    my $conf_file        = '.codestatrc';
-    my $global_conf_file = file( File::HomeDir->my_home, $conf_file )->stringify;
     my @opts             = (
-        [ 'global_conf_file|g=s' => 'path to the global config file', { default => $global_conf_file } ],
-        [ 'conf_file|c=s'        => 'path to the local config file',  { default => $conf_file } ],
+        [ 'global_conf_file|g=s' => 'path to the global config file' ],
+        [ 'conf_file|c=s'        => 'path to the local config file' ],
         [ 'profile|p=s'          => 'a configuration profile' ],
     );
     return @opts;

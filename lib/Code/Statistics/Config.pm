@@ -10,14 +10,15 @@ use MooseX::HasDefaults::RO;
 
 use Hash::Merge qw( merge );
 use Config::INI::Reader;
+use Path::Class qw(file);
 
 has args => ( isa => 'HashRef', default => sub {{}} );
 
 has command => ( isa => 'Str', );
 
-has conf_file => ( isa => 'Str', );
+has conf_file => ( isa => 'Str', default => '.codestatrc' );
 
-has global_conf_file => ( isa => 'Str', );
+has global_conf_file => ( isa => 'Str', default => sub { file( File::HomeDir->my_home, '.codestatrc' )->stringify } );
 
 has profile => ( isa => 'Str', );
 

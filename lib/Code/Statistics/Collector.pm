@@ -21,6 +21,7 @@ has no_dump => ( isa => 'Bool' );
 has dirs => (
     isa    => 'CS::InputList',
     coerce => 1,
+    default => sub { ['.'] },
 );
 
 has files => (
@@ -34,11 +35,13 @@ has files => (
 has targets => (
     isa     => 'CS::InputList',
     coerce  => 1,
+    default => sub { $_[0]->_get_all_submodules_for('Target') },
 );
 
 has metrics => (
     isa     => 'CS::InputList',
     coerce  => 1,
+    default => sub { $_[0]->_get_all_submodules_for('Metric') },
 );
 
 has progress_bar => (
@@ -130,6 +133,19 @@ sub _strip_file {
     my ( $self, $file ) = @_;
     my %stripped_file = map { $_ => $file->{$_} } qw( path measurements );
     return \%stripped_file;
+}
+
+sub _get_all_submodules_for {
+    my ( $self, $type ) = @_;
+    my $class = "Code::Statistics::$type";
+    require "Code/Statistics/$type.pm";
+    my @list = $class->all;
+
+    $_ =~ s/$class\::// for @list;
+
+    my $all = join ';', @list;
+
+    return $all;
 }
 
 1;
