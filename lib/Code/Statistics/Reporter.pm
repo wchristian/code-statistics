@@ -33,7 +33,7 @@ sub report {
 
     my $output;
     my $tmpl = $self->section_data( 'dos_template' );
-    my $tt = Template->new;
+    my $tt = Template->new( STRICT => 1 );
     $tt->process(
         $tmpl,
         {
