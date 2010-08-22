@@ -21,6 +21,7 @@ has quiet => ( isa => 'Bool' );
 has file_ignore => (
     isa    => 'CS::InputList',
     coerce => 1,
+    default => sub {[]},
 );
 
 =head2 reports
