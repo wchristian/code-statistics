@@ -102,7 +102,7 @@ sub process_metric {
 
     return if $self->is_only_loc_metric( $metric );
     return if !$target_type->{list}[0];
-    return if !$target_type->{list}[0]{$metric};
+    return if !exists $target_type->{list}[0]{$metric};
 
     my @list = sort { $b->{$metric} <=> $a->{$metric} } @{$target_type->{list}};
     my @top = grep { defined } @list[0 .. 9];
