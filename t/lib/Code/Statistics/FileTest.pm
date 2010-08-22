@@ -23,7 +23,7 @@ sub make_fixtures : Test(setup) {
 
     $self->{collector} = $collector;
 
-    $self->{file} = Code::Statistics::File->new( collector => $self->{collector}, path => 'data/json/basic_collect.json' );
+    $self->{file} = Code::Statistics::File->new( collector => $self->{collector}, original_path => 'data/json/basic_collect.json', path => 'data/json/basic_collect.json' );
 
     return;
 }

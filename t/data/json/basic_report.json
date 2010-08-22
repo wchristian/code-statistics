@@ -21,7 +21,6 @@ Path                                                  Line Col Sdepth Lines Size
 data/shelltest/basic_collect/SomeSubs.pm                 1   1      0    71  625
 data/shelltest/basic_collect/OneSub.pm                   1   1      0    10   73
 data/shelltest/basic_collect/Empty.pm                    1   1      0     6   46
-
 --------------------------------------------------------------------------------
 
 
@@ -32,7 +31,6 @@ Path                                                  Line Col Sdepth Lines Size
 data/shelltest/basic_collect/SomeSubs.pm                 1   1      0    71  625
 data/shelltest/basic_collect/OneSub.pm                   1   1      0    10   73
 data/shelltest/basic_collect/Empty.pm                    1   1      0     6   46
-
 --------------------------------------------------------------------------------
 
 
@@ -58,25 +56,23 @@ data/shelltest/basic_collect/SomeSubs.pm                10  12     10    11  150
 data/shelltest/basic_collect/SomeSubs.pm                11  16     12     9  127
 data/shelltest/basic_collect/SomeSubs.pm                12  20     14     7  100
 data/shelltest/basic_collect/SomeSubs.pm                13  24     16     5   69
-data/shelltest/basic_collect/OneSub.pm                   6  10      2     3   15
-data/shelltest/basic_collect/SomeSubs.pm                14  28     18     3   34
-
+data/shelltest/basic_collect/SomeSubs.pm                67  13      2     3   15
+data/shelltest/basic_collect/SomeSubs.pm                63  13      2     3   15
 --------------------------------------------------------------------------------
 
 bottom ten
 Path                                                  Line Col Sdepth Lines Size
 --------------------------------------------------------------------------------
-data/shelltest/basic_collect/SomeSubs.pm                67  13      2     3   15
-data/shelltest/basic_collect/SomeSubs.pm                63  13      2     3   15
-data/shelltest/basic_collect/SomeSubs.pm                59  13      2     3   15
-data/shelltest/basic_collect/SomeSubs.pm                55  13      2     3   15
-data/shelltest/basic_collect/SomeSubs.pm                51  13      2     3   15
-data/shelltest/basic_collect/SomeSubs.pm                47  13      2     3   15
-data/shelltest/basic_collect/SomeSubs.pm                43  13      2     3   15
-data/shelltest/basic_collect/SomeSubs.pm                39  13      2     3   15
-data/shelltest/basic_collect/SomeSubs.pm                35  13      2     3   15
+data/shelltest/basic_collect/OneSub.pm                   6  10      2     3   15
+data/shelltest/basic_collect/SomeSubs.pm                14  28     18     3   34
+data/shelltest/basic_collect/SomeSubs.pm                27  13      2     3   15
 data/shelltest/basic_collect/SomeSubs.pm                31  13      2     3   15
-
+data/shelltest/basic_collect/SomeSubs.pm                35  13      2     3   15
+data/shelltest/basic_collect/SomeSubs.pm                39  13      2     3   15
+data/shelltest/basic_collect/SomeSubs.pm                43  13      2     3   15
+data/shelltest/basic_collect/SomeSubs.pm                47  13      2     3   15
+data/shelltest/basic_collect/SomeSubs.pm                51  13      2     3   15
+data/shelltest/basic_collect/SomeSubs.pm                55  13      2     3   15
 --------------------------------------------------------------------------------
 
 
@@ -92,25 +88,23 @@ data/shelltest/basic_collect/SomeSubs.pm                10  12     10    11  150
 data/shelltest/basic_collect/SomeSubs.pm                 9  12      8    13  169
 data/shelltest/basic_collect/SomeSubs.pm                 8  12      6    15  188
 data/shelltest/basic_collect/SomeSubs.pm                 7  12      4    17  207
-data/shelltest/basic_collect/OneSub.pm                   6  10      2     3   15
-data/shelltest/basic_collect/SomeSubs.pm                 6  22      2    20  234
-
+data/shelltest/basic_collect/SomeSubs.pm                67  13      2     3   15
+data/shelltest/basic_collect/SomeSubs.pm                63  13      2     3   15
 --------------------------------------------------------------------------------
 
 bottom ten
 Path                                                  Line Col Sdepth Lines Size
 --------------------------------------------------------------------------------
-data/shelltest/basic_collect/SomeSubs.pm                67  13      2     3   15
-data/shelltest/basic_collect/SomeSubs.pm                63  13      2     3   15
-data/shelltest/basic_collect/SomeSubs.pm                59  13      2     3   15
-data/shelltest/basic_collect/SomeSubs.pm                55  13      2     3   15
-data/shelltest/basic_collect/SomeSubs.pm                51  13      2     3   15
-data/shelltest/basic_collect/SomeSubs.pm                47  13      2     3   15
-data/shelltest/basic_collect/SomeSubs.pm                43  13      2     3   15
-data/shelltest/basic_collect/SomeSubs.pm                39  13      2     3   15
-data/shelltest/basic_collect/SomeSubs.pm                35  13      2     3   15
+data/shelltest/basic_collect/OneSub.pm                   6  10      2     3   15
+data/shelltest/basic_collect/SomeSubs.pm                 6  22      2    20  234
+data/shelltest/basic_collect/SomeSubs.pm                27  13      2     3   15
 data/shelltest/basic_collect/SomeSubs.pm                31  13      2     3   15
-
+data/shelltest/basic_collect/SomeSubs.pm                35  13      2     3   15
+data/shelltest/basic_collect/SomeSubs.pm                39  13      2     3   15
+data/shelltest/basic_collect/SomeSubs.pm                43  13      2     3   15
+data/shelltest/basic_collect/SomeSubs.pm                47  13      2     3   15
+data/shelltest/basic_collect/SomeSubs.pm                51  13      2     3   15
+data/shelltest/basic_collect/SomeSubs.pm                55  13      2     3   15
 --------------------------------------------------------------------------------
 
 
@@ -127,24 +121,22 @@ data/shelltest/basic_collect/SomeSubs.pm                11  16     12     9  127
 data/shelltest/basic_collect/SomeSubs.pm                12  20     14     7  100
 data/shelltest/basic_collect/SomeSubs.pm                13  24     16     5   69
 data/shelltest/basic_collect/SomeSubs.pm                14  28     18     3   34
-data/shelltest/basic_collect/OneSub.pm                   6  10      2     3   15
-
+data/shelltest/basic_collect/SomeSubs.pm                67  13      2     3   15
 --------------------------------------------------------------------------------
 
 bottom ten
 Path                                                  Line Col Sdepth Lines Size
 --------------------------------------------------------------------------------
-data/shelltest/basic_collect/SomeSubs.pm                67  13      2     3   15
-data/shelltest/basic_collect/SomeSubs.pm                63  13      2     3   15
-data/shelltest/basic_collect/SomeSubs.pm                59  13      2     3   15
-data/shelltest/basic_collect/SomeSubs.pm                55  13      2     3   15
-data/shelltest/basic_collect/SomeSubs.pm                51  13      2     3   15
-data/shelltest/basic_collect/SomeSubs.pm                47  13      2     3   15
-data/shelltest/basic_collect/SomeSubs.pm                43  13      2     3   15
-data/shelltest/basic_collect/SomeSubs.pm                39  13      2     3   15
-data/shelltest/basic_collect/SomeSubs.pm                35  13      2     3   15
+data/shelltest/basic_collect/OneSub.pm                   6  10      2     3   15
+data/shelltest/basic_collect/SomeSubs.pm                27  13      2     3   15
 data/shelltest/basic_collect/SomeSubs.pm                31  13      2     3   15
-
+data/shelltest/basic_collect/SomeSubs.pm                35  13      2     3   15
+data/shelltest/basic_collect/SomeSubs.pm                39  13      2     3   15
+data/shelltest/basic_collect/SomeSubs.pm                43  13      2     3   15
+data/shelltest/basic_collect/SomeSubs.pm                47  13      2     3   15
+data/shelltest/basic_collect/SomeSubs.pm                51  13      2     3   15
+data/shelltest/basic_collect/SomeSubs.pm                55  13      2     3   15
+data/shelltest/basic_collect/SomeSubs.pm                59  13      2     3   15
 --------------------------------------------------------------------------------
 
 
@@ -163,25 +155,23 @@ top ten
 Path                                                  Line Col Sdepth Lines Size
 --------------------------------------------------------------------------------
 data/shelltest/basic_collect/SomeSubs.pm                 6   1      1    20  255
-data/shelltest/basic_collect/OneSub.pm                   6   1      1     3   24
-data/shelltest/basic_collect/SomeSubs.pm                27   1      1     3   27
-data/shelltest/basic_collect/SomeSubs.pm                31   1      1     3   27
-data/shelltest/basic_collect/SomeSubs.pm                35   1      1     3   27
-data/shelltest/basic_collect/SomeSubs.pm                39   1      1     3   27
-data/shelltest/basic_collect/SomeSubs.pm                43   1      1     3   27
-data/shelltest/basic_collect/SomeSubs.pm                47   1      1     3   27
-data/shelltest/basic_collect/SomeSubs.pm                51   1      1     3   27
+data/shelltest/basic_collect/SomeSubs.pm                67   1      1     3   27
+data/shelltest/basic_collect/SomeSubs.pm                63   1      1     3   27
+data/shelltest/basic_collect/SomeSubs.pm                59   1      1     3   27
 data/shelltest/basic_collect/SomeSubs.pm                55   1      1     3   27
-
+data/shelltest/basic_collect/SomeSubs.pm                51   1      1     3   27
+data/shelltest/basic_collect/SomeSubs.pm                47   1      1     3   27
+data/shelltest/basic_collect/SomeSubs.pm                43   1      1     3   27
+data/shelltest/basic_collect/SomeSubs.pm                39   1      1     3   27
+data/shelltest/basic_collect/SomeSubs.pm                35   1      1     3   27
 --------------------------------------------------------------------------------
 
 bottom ten
 Path                                                  Line Col Sdepth Lines Size
 --------------------------------------------------------------------------------
-data/shelltest/basic_collect/SomeSubs.pm                67   1      1     3   27
-data/shelltest/basic_collect/SomeSubs.pm                63   1      1     3   27
-data/shelltest/basic_collect/SomeSubs.pm                59   1      1     3   27
-
+data/shelltest/basic_collect/OneSub.pm                   6   1      1     3   24
+data/shelltest/basic_collect/SomeSubs.pm                27   1      1     3   27
+data/shelltest/basic_collect/SomeSubs.pm                31   1      1     3   27
 --------------------------------------------------------------------------------
 
 
@@ -190,24 +180,22 @@ top ten
 Path                                                  Line Col Sdepth Lines Size
 --------------------------------------------------------------------------------
 data/shelltest/basic_collect/SomeSubs.pm                 6   1      1    20  255
-data/shelltest/basic_collect/SomeSubs.pm                27   1      1     3   27
-data/shelltest/basic_collect/SomeSubs.pm                31   1      1     3   27
-data/shelltest/basic_collect/SomeSubs.pm                35   1      1     3   27
-data/shelltest/basic_collect/SomeSubs.pm                39   1      1     3   27
-data/shelltest/basic_collect/SomeSubs.pm                43   1      1     3   27
-data/shelltest/basic_collect/SomeSubs.pm                47   1      1     3   27
-data/shelltest/basic_collect/SomeSubs.pm                51   1      1     3   27
-data/shelltest/basic_collect/SomeSubs.pm                55   1      1     3   27
+data/shelltest/basic_collect/SomeSubs.pm                67   1      1     3   27
+data/shelltest/basic_collect/SomeSubs.pm                63   1      1     3   27
 data/shelltest/basic_collect/SomeSubs.pm                59   1      1     3   27
-
+data/shelltest/basic_collect/SomeSubs.pm                55   1      1     3   27
+data/shelltest/basic_collect/SomeSubs.pm                51   1      1     3   27
+data/shelltest/basic_collect/SomeSubs.pm                47   1      1     3   27
+data/shelltest/basic_collect/SomeSubs.pm                43   1      1     3   27
+data/shelltest/basic_collect/SomeSubs.pm                39   1      1     3   27
+data/shelltest/basic_collect/SomeSubs.pm                35   1      1     3   27
 --------------------------------------------------------------------------------
 
 bottom ten
 Path                                                  Line Col Sdepth Lines Size
 --------------------------------------------------------------------------------
 data/shelltest/basic_collect/OneSub.pm                   6   1      1     3   24
-data/shelltest/basic_collect/SomeSubs.pm                67   1      1     3   27
-data/shelltest/basic_collect/SomeSubs.pm                63   1      1     3   27
-
+data/shelltest/basic_collect/SomeSubs.pm                27   1      1     3   27
+data/shelltest/basic_collect/SomeSubs.pm                31   1      1     3   27
 --------------------------------------------------------------------------------
 
