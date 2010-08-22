@@ -80,7 +80,10 @@ sub collect {
 
 sub _find_files {
     my ( $self ) = @_;
-    my @files = File::Find::Rule::Perl->perl_file->in( @{ $self->dirs } );
+    my @files = (
+        File::Find::Rule::Perl->perl_file->in( @{ $self->dirs } ),
+        File::Find::Rule->file->name( '*.cgi' )->in( @{ $self->dirs } ),
+    );
     return @files;
 }
 
