@@ -25,6 +25,20 @@
                {
                   "col" : 1,
                   "sdepth" : 0,
+                  "lines" : 6,
+                  "line" : 1,
+                  "size" : 48
+               }
+            ]
+         },
+         "path" : "data/shelltest/basic_collect/Ignored.pm"
+      },
+      {
+         "measurements" : {
+            "RootDocument" : [
+               {
+                  "col" : 1,
+                  "sdepth" : 0,
                   "lines" : 10,
                   "line" : 1,
                   "size" : 73

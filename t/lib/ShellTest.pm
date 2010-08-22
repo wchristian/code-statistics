@@ -41,7 +41,7 @@ sub basic_collect : TestGroup {
         'dumped file matches expected output'
     );
 
-    @ARGV = qw( report --quiet );
+    @ARGV = qw( report --quiet --file_ignore=;Ignored );
 
     $self->check_codestat_shell_app_against( "data/json/basic_report.json" );
 

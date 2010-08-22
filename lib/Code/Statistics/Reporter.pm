@@ -18,6 +18,11 @@ use List::MoreUtils qw( uniq );
 
 has quiet => ( isa => 'Bool' );
 
+has file_ignore => (
+    isa    => 'CS::InputList',
+    coerce => 1,
+);
+
 =head2 reports
     Creates a report on given code statistics and outputs it in some way.
 =cut
@@ -27,6 +32,7 @@ sub report {
 
     my $stats = from_json read_file('codestat.out');
 
+    $stats->{files} = $self->_strip_ignored_files( @{ $stats->{files} } );
     $stats->{target_types} = $self->prepare_target_types( $stats->{files} );
 
     $_->{metrics} = $self->process_target_type( $_, $stats->{metrics} ) for @{$stats->{target_types}};
@@ -49,6 +55,18 @@ sub report {
     print $output if !$self->quiet;
 
     return $output;
+}
+
+sub _strip_ignored_files {
+    my ( $self, @files ) = @_;
+
+    my @ignore_regexes = grep { $_ } @{ $self->file_ignore };
+
+    for my $re ( @ignore_regexes ) {
+        @files = grep { $_->{path} !~ $re } @files;
+    }
+
+    return \@files;
 }
 
 sub sort_columns {

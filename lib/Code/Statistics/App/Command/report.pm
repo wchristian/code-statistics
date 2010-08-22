@@ -12,6 +12,7 @@ sub abstract { return 'create reports on statistics and output them' }
 sub opt_spec {
     my @opts = (
         [ 'quiet' => 'prevents writing of report to screen' ],
+        [ 'file_ignore=s' => 'list of regular expressions matching files that should be ignored in reporting ', { default => '' } ],
     );
     return @opts;
 }
