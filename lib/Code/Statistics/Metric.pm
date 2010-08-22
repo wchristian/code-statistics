@@ -5,6 +5,8 @@ package Code::Statistics::Metric;
 
 # ABSTRACT: base class for Code::Statistic metrics
 
+use Module::Pluggable search_path => __PACKAGE__, sub_name => 'all';
+
 =head2 measure
     Returns the metric of the given target.
     Is called with the metric class name and a target object of unspecified

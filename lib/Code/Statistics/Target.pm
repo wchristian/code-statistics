@@ -5,6 +5,8 @@ package Code::Statistics::Target;
 
 # ABSTRACT: base class for Code::Statistic targets
 
+use Module::Pluggable search_path => __PACKAGE__, sub_name => 'all';
+
 =head2 find_targets
     Returns an arrayref to a list of targets found in the given file.
     Is called with the target class name and a Code::Statistics::File object.
