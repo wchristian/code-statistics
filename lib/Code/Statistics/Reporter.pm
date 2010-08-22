@@ -14,6 +14,7 @@ use File::Slurp 'read_file';
 use List::Util qw( reduce max sum );
 use Data::Section -setup;
 use Template;
+use List::MoreUtils qw( uniq );
 
 has quiet => ( isa => 'Bool' );
 
@@ -30,15 +31,12 @@ sub report {
 
     $_->{metrics} = $self->process_target_type( $_, $stats->{metrics} ) for @{$stats->{target_types}};
 
-    my @columns = $self->build_template( $stats );
-
     my $output;
     my $tmpl = $self->section_data( 'dos_template' );
     my $tt = Template->new;
     $tt->process(
         $tmpl,
         {
-            columns => \@columns,
             targets => $stats->{target_types},
             truncate_front => sub {
                 return $_[0] if length($_[0]) <= $_[1];
@@ -53,24 +51,23 @@ sub report {
     return $output;
 }
 
-sub build_template {
-    my ( $self, $stats ) = @_;
+sub sort_columns {
+    my ( $self, %widths ) = @_;
 
-    my %metrics = map { $_ => 1 } 'path', @{$stats->{metrics}};
+    my @columns = uniq grep { $widths{$_} } qw( path line col ), keys %widths;
 
-    my @columns = grep { $metrics{$_} } qw( path line col );
-    delete $metrics{$_} for @columns;
+    @columns = map {{ name => $_, width => $widths{$_} }} @columns;
 
-    @columns = ( @columns, keys %metrics );
-
-    @columns = map {{ name => $_, width => 10 }} @columns;
+    my $used_width = sum( values %widths ) - $columns[0]{width};
+    my $path_width = 80-$used_width;
+    $columns[0]{width} = max( 12, $path_width );
 
     for ( @columns ) {
         $_->{printname} = ucfirst $_->{name};
         $_->{printname} = " $_->{printname}" if $_->{name} ne 'path';
     }
 
-    return @columns;
+    return \@columns;
 }
 
 sub prepare_target_types {
@@ -118,8 +115,8 @@ sub process_metric {
 
     $metric_data->{bottom} = $self->get_bottom( @list ) if @list > 10;
     $metric_data->{avg} = $self->calc_average( $metric, @list );
-
     $metric_data->{widths} = $self->calc_widths( $metric_data->{bottom}, @top );
+    $metric_data->{columns} = $self->sort_columns( %{ $metric_data->{widths} } );
 
     return $metric_data;
 }
@@ -139,9 +136,6 @@ sub calc_widths {
     }
 
     $_++ for values %widths;
-    my $used_width = sum( values %widths ) - $widths{path};
-    my $path_width = 80-$used_width;
-    $widths{path} = max( 12, $path_width );
 
     return \%widths;
 }
@@ -199,18 +193,16 @@ __[ dos_template ]__
             [%- NEXT IF !metric.$table_mode.size -%]
             [%- table_mode %] ten
 
-            [%- FOR column IN columns -%]
-                [%- width = metric.widths.${column.name} -%]
-                [%- column.printname FILTER format("%-${width}s") -%]
+            [%- FOR column IN metric.columns -%]
+                [%- column.printname FILTER format("%-${column.width}s") -%]
             [%- END %]
 
             [%- FOR line IN metric.$table_mode -%]
-                [%- FOR column IN columns -%]
-                    [%- width = metric.widths.${column.name} -%]
-                    [%- IF column.name == 'path' -%]
-                        [%- truncate_front( line.${column.name}, width ) FILTER format("%-${width}s") -%]
-                    [%- ELSE -%]
-                        [%- line.${column.name} FILTER format("%${width}s") -%]
+                [%- FOR column IN metric.columns -%]
+                    [%- IF column.name == 'path' # align to the left and truncate -%]
+                        [%- truncate_front( line.${column.name}, column.width ) FILTER format("%-${column.width}s") -%]
+                    [%- ELSE # align to the right -%]
+                        [%- line.${column.name} FILTER format("%${column.width}s") -%]
                     [%- END -%]
                 [%- END %]
 
