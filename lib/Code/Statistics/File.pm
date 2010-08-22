@@ -5,6 +5,8 @@ package Code::Statistics::File;
 
 # ABSTRACT: loads a file, searches for targets in it and measures their metrics
 
+use 5.004;
+
 use Moose;
 use MooseX::HasDefaults::RO;
 use Code::Statistics::MooseTypes;

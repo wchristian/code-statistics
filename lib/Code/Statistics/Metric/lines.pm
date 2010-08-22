@@ -14,7 +14,7 @@ extends 'Code::Statistics::Metric';
 
 sub measure {
     my ( $class, $target ) = @_;
-    my @lines = split( '\n', $target->content );
+    my @lines = split /\n/, $target->content;
     return scalar @lines;
 }
 

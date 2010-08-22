@@ -5,6 +5,8 @@ package Code::Statistics::Target;
 
 # ABSTRACT: base class for Code::Statistic targets
 
+use 5.004;
+
 use Module::Pluggable search_path => __PACKAGE__, sub_name => 'all';
 
 =head2 find_targets

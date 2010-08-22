@@ -15,18 +15,18 @@ extends 'Code::Statistics::Metric';
 sub measure {
     my ( $class, $target ) = @_;
 
-    my @parent_list = $class->get_parents( $target );
+    my @parent_list = $class->_get_parents( $target );
 
     my $depth = @parent_list - 1;
 
     return $depth;
 }
 
-sub get_parents {
+sub _get_parents {
     my ( $class, $target ) = @_;
     my $parent = $target->parent;
     return $target if !$parent;
-    return ( $target, $class->get_parents( $parent ) );
+    return ( $target, $class->_get_parents( $parent ) );
 }
 
 1;

@@ -1,6 +1,7 @@
+## no critic
 package Code::Statistics::SlurpyConstructor;
 
-our $VERSION = '0.94';
+# ABSTRACT: temporary clone of MooseX::SlurpyConstructor with some fixes
 
 use Moose;
 use Moose::Exporter;
@@ -10,6 +11,8 @@ use Code::Statistics::SlurpyConstructor::Role::Attribute;
 
 Moose::Exporter->setup_import_methods;
 
+=head2 init_meta
+=cut
 sub init_meta {
     my ( undef, %args ) = @_;
 
@@ -39,7 +42,7 @@ __PACKAGE__->meta->make_immutable;
 
 =head1 NAME
 
-Code::Statistics::SlurpyConstructor - L<MooseX::SlurpyConstructor> with a temporary deprecation fix
+Code::Statistics::SlurpyConstructor - L<MooseX::SlurpyConstructor> with a few temporary fixes
 
 =head1 SEE ALSO
 

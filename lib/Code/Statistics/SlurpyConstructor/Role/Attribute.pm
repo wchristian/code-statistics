@@ -1,4 +1,7 @@
+## no critic
 package Code::Statistics::SlurpyConstructor::Role::Attribute;
+
+# ABSTRACT: Internal class for Code::Statistics::SlurpyConstructor
 
 use Moose::Role;
 

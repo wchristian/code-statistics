@@ -5,10 +5,13 @@ package Code::Statistics::Reporter;
 
 # ABSTRACT: creates reports statistics and outputs them
 
+use 5.004;
+
 use Moose;
 use MooseX::HasDefaults::RO;
 use Code::Statistics::MooseTypes;
 
+use Carp 'confess';
 use JSON 'from_json';
 use File::Slurp 'read_file';
 use List::Util qw( reduce max sum );
@@ -24,6 +27,10 @@ has file_ignore => (
     default => sub {[]},
 );
 
+has screen_width => ( isa => 'Int', default => 80 );
+has min_path_width => ( isa => 'Int', default => 12 );
+has table_length => ( isa => 'Int', default => 10 );
+
 =head2 reports
     Creates a report on given code statistics and outputs it in some way.
 =cut
@@ -34,9 +41,9 @@ sub report {
     my $stats = from_json read_file('codestat.out');
 
     $stats->{files} = $self->_strip_ignored_files( @{ $stats->{files} } );
-    $stats->{target_types} = $self->prepare_target_types( $stats->{files} );
+    $stats->{target_types} = $self->_prepare_target_types( $stats->{files} );
 
-    $_->{metrics} = $self->process_target_type( $_, $stats->{metrics} ) for @{$stats->{target_types}};
+    $_->{metrics} = $self->_process_target_type( $_, $stats->{metrics} ) for @{$stats->{target_types}};
 
     my $output;
     my $tmpl = $self->section_data( 'dos_template' );
@@ -46,12 +53,13 @@ sub report {
         {
             targets => $stats->{target_types},
             truncate_front => sub {
-                return $_[0] if length($_[0]) <= $_[1];
-                return substr( $_[0], -1 * $_[1], $_[1] )
+                my ( $string, $length ) = @_;
+                return $string if $length >= length $string;
+                return substr $string, 0-$length, $length;
             },
         },
         \$output
-    ) or die $tt->error;
+    ) or confess $tt->error;
 
     print $output if !$self->quiet;
 
@@ -70,7 +78,7 @@ sub _strip_ignored_files {
     return \@files;
 }
 
-sub sort_columns {
+sub _sort_columns {
     my ( $self, %widths ) = @_;
 
     my @columns = uniq grep { $widths{$_} } qw( path line col ), keys %widths;
@@ -78,8 +86,8 @@ sub sort_columns {
     @columns = map {{ name => $_, width => $widths{$_} }} @columns;
 
     my $used_width = sum( values %widths ) - $columns[0]{width};
-    my $path_width = 80-$used_width;
-    $columns[0]{width} = max( 12, $path_width );
+    my $path_width = $self->screen_width - $used_width;
+    $columns[0]{width} = max( $self->min_path_width, $path_width );
 
     for ( @columns ) {
         $_->{printname} = ucfirst $_->{name};
@@ -89,7 +97,7 @@ sub sort_columns {
     return \@columns;
 }
 
-sub prepare_target_types {
+sub _prepare_target_types {
     my ( $self, $files ) = @_;
 
     my %target_types;
@@ -108,23 +116,23 @@ sub prepare_target_types {
     return [ values %target_types ];
 }
 
-sub process_target_type {
+sub _process_target_type {
     my ( $self, $target_type, $metrics ) = @_;
 
-    my @metric = map $self->process_metric( $target_type, $_ ), @{$metrics};
+    my @metric = map $self->_process_metric( $target_type, $_ ), @{$metrics};
 
     return \@metric;
 }
 
-sub process_metric {
+sub _process_metric {
     my ( $self, $target_type, $metric ) = @_;
 
-    return if $self->is_only_loc_metric( $metric );
+    return if $self->_is_only_loc_metric( $metric );
     return if !$target_type->{list}[0];
     return if !exists $target_type->{list}[0]{$metric};
 
-    my @list = sort { $b->{$metric} <=> $a->{$metric} } @{$target_type->{list}};
-    my @top = grep { defined } @list[0 .. 9];
+    my @list = reverse sort { $a->{$metric} <=> $b->{$metric} } @{$target_type->{list}};
+    my @top = grep { defined } @list[ 0 .. $self->table_length - 1 ];
     @list = grep { defined } @list; # the above autovivifies some entries, this reverses that
 
     my $metric_data = {
@@ -132,15 +140,15 @@ sub process_metric {
         type => $metric,
     };
 
-    $metric_data->{bottom} = $self->get_bottom( @list );
-    $metric_data->{avg} = $self->calc_average( $metric, @list );
-    $metric_data->{widths} = $self->calc_widths( @{$metric_data->{bottom}}, @top );
-    $metric_data->{columns} = $self->sort_columns( %{ $metric_data->{widths} } );
+    $metric_data->{bottom} = $self->_get_bottom( @list );
+    $metric_data->{avg} = $self->_calc_average( $metric, @list );
+    $metric_data->{widths} = $self->_calc_widths( @{$metric_data->{bottom}}, @top );
+    $metric_data->{columns} = $self->_sort_columns( %{ $metric_data->{widths} } );
 
     return $metric_data;
 }
 
-sub calc_widths {
+sub _calc_widths {
     my ( $self, $bottom, @list ) = @_;
 
     my @columns = keys %{$list[0]};
@@ -157,14 +165,14 @@ sub calc_widths {
     return \%widths;
 }
 
-sub is_only_loc_metric {
+sub _is_only_loc_metric {
     my ( $self, $metric ) = @_;
     return 1 if $metric eq 'line';
     return 1 if $metric eq 'col';
     return 0;
 }
 
-sub calc_average {
+sub _calc_average {
     my ( $self, $metric, @list ) = @_;
 
     my $sum = reduce { $a + $b->{$metric} } 0, @list;
@@ -173,17 +181,17 @@ sub calc_average {
     return $average;
 }
 
-sub get_bottom {
+sub _get_bottom {
     my ( $self, @list ) = @_;
 
-    return [] if @list < 10;
+    return [] if @list < $self->table_length;
 
     @list = reverse @list;
-    my @bottom = @list[ 0 .. 9 ];
+    my @bottom = @list[ 0 .. $self->table_length - 1 ];
     @list = grep { defined } @list; # the above autovivifies some entries, this reverses that
 
-    my $bottom_size = @list - 10;
-    @bottom = splice( @bottom, 0, $bottom_size ) if $bottom_size < 10;
+    my $bottom_size = @list - $self->table_length;
+    @bottom = splice @bottom, 0, $bottom_size if $bottom_size < $self->table_length;
 
     return \@bottom;
 }

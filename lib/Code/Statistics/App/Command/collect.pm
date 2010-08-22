@@ -15,7 +15,7 @@ sub opt_spec {
         [ 'dirs=s' => 'the directories in which to to search for perl code files' ],
         [ 'no_dump' => 'prevents writing of measurements to disk' ],
         [ 'relative_paths' => 'switches file paths in dump from absolute to relative format' ],
-        [ 'foreign_paths=s' => 'switches file paths in dump from native to indicated system format; see File::Spec for options' ],
+        [ 'foreign_paths=s' => 'file paths in dump are printed in indicated system format; see File::Spec' ],
         [ 'targets=s' => 'specifies targets that will be looked for inside of files; see C::S::Target::*' ],
         [ 'metrics=s' => 'specifies metrics that be tried to be measured on targets; see C::S::Metric::*' ],
     );

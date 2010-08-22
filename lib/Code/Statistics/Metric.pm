@@ -5,6 +5,8 @@ package Code::Statistics::Metric;
 
 # ABSTRACT: base class for Code::Statistic metrics
 
+use 5.004;
+
 use Module::Pluggable search_path => __PACKAGE__, sub_name => 'all';
 
 =head2 measure

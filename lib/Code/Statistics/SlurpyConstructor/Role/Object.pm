@@ -1,4 +1,7 @@
+## no critic
 package Code::Statistics::SlurpyConstructor::Role::Object;
+
+# ABSTRACT: Internal class for Code::Statistics::SlurpyConstructor
 
 use Moose::Role;
 
@@ -23,9 +26,9 @@ around new => sub {
     # remove any that are defined as init_args for any attributes
     delete @slurpy_args{ @init_args };
 
-    my $slurpy_attr = find_slurpy_attr( $class );
+    my $slurpy_attr = _find_slurpy_attr( $class );
     my $init_arg = $slurpy_attr->init_arg;
-    my %init_args = map filter_final_init_arg( $args, $init_arg, $_ ), @init_args;
+    my %init_args = map _filter_final_init_arg( $args, $init_arg, $_ ), @init_args;
 
     if ( defined $init_arg and defined $init_args{ $init_arg } ) {
         my $name = $slurpy_attr->name;
@@ -43,7 +46,7 @@ around new => sub {
     return $self;
 };
 
-sub filter_final_init_arg {
+sub _filter_final_init_arg {
     my ( $args, $slurpy_name, $arg_name ) = @_;
 
     return if !exists $args->{$arg_name} and $slurpy_name ne $arg_name;
@@ -51,7 +54,7 @@ sub filter_final_init_arg {
     return ( $arg_name => $args->{$arg_name} );
 }
 
-sub find_slurpy_attr {
+sub _find_slurpy_attr {
     my ( $class ) = @_;
 
     # find all attributes marked slurpy

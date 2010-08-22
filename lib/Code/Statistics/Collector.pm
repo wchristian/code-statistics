@@ -5,6 +5,8 @@ package Code::Statistics::Collector;
 
 # ABSTRACT: collects statistics and dumps them to json
 
+use 5.006_003;
+
 use Moose;
 use MooseX::HasDefaults::RO;
 use Code::Statistics::MooseTypes;
@@ -15,6 +17,7 @@ use Code::Statistics::File;
 use JSON 'to_json';
 use File::Slurp 'write_file';
 use Term::ProgressBar::Simple;
+use File::Find::Rule;
 
 has no_dump => ( isa => 'Bool' );
 
@@ -142,14 +145,14 @@ sub _find_ignored_files {
 
     my @all_files = File::Find::Rule->file->in( @{ $self->dirs } );
     @all_files = grep { !$present_files{$_} } @all_files;
-    my $useless_stuff = qr@
+    my $useless_stuff = qr{
         (^|/)
             (
-                \.git   |   \.svn   |   cover_db   |   \.build   |   nytprof   |
+                [.]git   |   [.]svn   |   cover_db   |   [.]build   |   nytprof   |
                 blib
             )
         /
-    @x;
+    }x;
     @all_files = grep { $_ !~ $useless_stuff } @all_files; # filter out files we most certainly do not care about
 
     return @all_files;
@@ -169,7 +172,7 @@ sub _strip_file {
 sub _get_all_submodules_for {
     my ( $self, $type ) = @_;
     my $class = "Code::Statistics::$type";
-    require "Code/Statistics/$type.pm";
+    require "Code/Statistics/$type.pm";    ## no critic qw( RequireBarewordIncludes )
     my @list = $class->all;
 
     $_ =~ s/$class\::// for @list;
