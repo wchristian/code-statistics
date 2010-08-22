@@ -99,6 +99,7 @@ sub _prepare_file {
 
     my %params = (
         path      => $path,
+        original_path => $path,
         targets   => $self->targets,
         metrics   => $self->metrics,
         progress => sub { $self->progress_bar->increment },
@@ -120,7 +121,7 @@ sub _measurements_as_json {
     my ( $self ) = @_;
 
     my @files = map $self->_strip_file( $_ ), @{ $self->files };
-    my @ignored_files = $self->_find_ignored_files( @files );
+    my @ignored_files = $self->_find_ignored_files( @{ $self->files } );
 
     my $measurements = {
         files => \@files,
@@ -137,7 +138,7 @@ sub _measurements_as_json {
 sub _find_ignored_files {
     my ( $self, @files ) = @_;
 
-    my %present_files = map { $_ => 1 } $self->_find_files; # TODO : have files store their original path too?
+    my %present_files = map { $_->{original_path} => 1 } @files;
 
     my @all_files = File::Find::Rule->file->in( @{ $self->dirs } );
     @all_files = grep { !$present_files{$_} } @all_files;

@@ -20,6 +20,11 @@ has path => (
     required => 1,
 );
 
+has original_path => (
+    isa      => 'Str',
+    required => 1,
+);
+
 has targets => (
     isa     => 'CS::InputList',
     coerce  => 1,
