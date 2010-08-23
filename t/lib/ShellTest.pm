@@ -6,7 +6,7 @@ package ShellTest;
 use parent 'Test::Class::TestGroup';
 
 use Test::More;
-use Test::Regression;
+use Test::BinRegression;
 use File::Slurp 'read_file';
 
 use Code::Statistics::App;
@@ -74,7 +74,8 @@ sub check_codestat_shell_app_against {
             return $result;
         },
         $file,
-        'returned string matches expected output'
+        'returned string matches expected output',
+        'binmode',
     );
 
     return;
