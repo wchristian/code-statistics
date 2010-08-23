@@ -87,6 +87,7 @@ sub _find_files {
         File::Find::Rule::Perl->perl_file->in( @{ $self->dirs } ),
         File::Find::Rule->file->name( '*.cgi' )->in( @{ $self->dirs } ),
     );
+    @files = sort { lc $a cmp lc $b } @files;
     return @files;
 }
 
