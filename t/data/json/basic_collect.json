@@ -1,7 +1,7 @@
 {
    "targets" : [
-      "RootDocument",
       "Block",
+      "RootDocument",
       "Sub"
    ],
    "files" : [
@@ -12,8 +12,8 @@
                   "col" : 1,
                   "sdepth" : 0,
                   "lines" : 6,
-                  "line" : 1,
-                  "size" : 46
+                  "size" : 46,
+                  "line" : 1
                }
             ]
          },
@@ -26,8 +26,8 @@
                   "col" : 1,
                   "sdepth" : 0,
                   "lines" : 6,
-                  "line" : 1,
-                  "size" : 48
+                  "size" : 48,
+                  "line" : 1
                }
             ]
          },
@@ -40,8 +40,8 @@
                   "col" : 1,
                   "sdepth" : 0,
                   "lines" : 10,
-                  "line" : 1,
-                  "size" : 73
+                  "size" : 73,
+                  "line" : 1
                }
             ],
             "Block" : [
@@ -49,8 +49,8 @@
                   "col" : 10,
                   "sdepth" : 2,
                   "lines" : 3,
-                  "line" : 6,
-                  "size" : 15
+                  "size" : 15,
+                  "line" : 6
                }
             ],
             "Sub" : [
@@ -58,8 +58,8 @@
                   "col" : 1,
                   "sdepth" : 1,
                   "lines" : 3,
-                  "line" : 6,
-                  "size" : 24
+                  "size" : 24,
+                  "line" : 6
                }
             ]
          },
@@ -72,8 +72,8 @@
                   "col" : 1,
                   "sdepth" : 0,
                   "lines" : 71,
-                  "line" : 1,
-                  "size" : 625
+                  "size" : 625,
+                  "line" : 1
                }
             ],
             "Block" : [
@@ -81,141 +81,141 @@
                   "col" : 22,
                   "sdepth" : 2,
                   "lines" : 20,
-                  "line" : 6,
-                  "size" : 234
+                  "size" : 234,
+                  "line" : 6
                },
                {
                   "col" : 12,
                   "sdepth" : 4,
                   "lines" : 17,
-                  "line" : 7,
-                  "size" : 207
+                  "size" : 207,
+                  "line" : 7
                },
                {
                   "col" : 12,
                   "sdepth" : 6,
                   "lines" : 15,
-                  "line" : 8,
-                  "size" : 188
+                  "size" : 188,
+                  "line" : 8
                },
                {
                   "col" : 12,
                   "sdepth" : 8,
                   "lines" : 13,
-                  "line" : 9,
-                  "size" : 169
+                  "size" : 169,
+                  "line" : 9
                },
                {
                   "col" : 12,
                   "sdepth" : 10,
                   "lines" : 11,
-                  "line" : 10,
-                  "size" : 150
+                  "size" : 150,
+                  "line" : 10
                },
                {
                   "col" : 16,
                   "sdepth" : 12,
                   "lines" : 9,
-                  "line" : 11,
-                  "size" : 127
+                  "size" : 127,
+                  "line" : 11
                },
                {
                   "col" : 20,
                   "sdepth" : 14,
                   "lines" : 7,
-                  "line" : 12,
-                  "size" : 100
+                  "size" : 100,
+                  "line" : 12
                },
                {
                   "col" : 24,
                   "sdepth" : 16,
                   "lines" : 5,
-                  "line" : 13,
-                  "size" : 69
+                  "size" : 69,
+                  "line" : 13
                },
                {
                   "col" : 28,
                   "sdepth" : 18,
                   "lines" : 3,
-                  "line" : 14,
-                  "size" : 34
+                  "size" : 34,
+                  "line" : 14
                },
                {
                   "col" : 13,
                   "sdepth" : 2,
                   "lines" : 3,
-                  "line" : 27,
-                  "size" : 15
+                  "size" : 15,
+                  "line" : 27
                },
                {
                   "col" : 13,
                   "sdepth" : 2,
                   "lines" : 3,
-                  "line" : 31,
-                  "size" : 15
+                  "size" : 15,
+                  "line" : 31
                },
                {
                   "col" : 13,
                   "sdepth" : 2,
                   "lines" : 3,
-                  "line" : 35,
-                  "size" : 15
+                  "size" : 15,
+                  "line" : 35
                },
                {
                   "col" : 13,
                   "sdepth" : 2,
                   "lines" : 3,
-                  "line" : 39,
-                  "size" : 15
+                  "size" : 15,
+                  "line" : 39
                },
                {
                   "col" : 13,
                   "sdepth" : 2,
                   "lines" : 3,
-                  "line" : 43,
-                  "size" : 15
+                  "size" : 15,
+                  "line" : 43
                },
                {
                   "col" : 13,
                   "sdepth" : 2,
                   "lines" : 3,
-                  "line" : 47,
-                  "size" : 15
+                  "size" : 15,
+                  "line" : 47
                },
                {
                   "col" : 13,
                   "sdepth" : 2,
                   "lines" : 3,
-                  "line" : 51,
-                  "size" : 15
+                  "size" : 15,
+                  "line" : 51
                },
                {
                   "col" : 13,
                   "sdepth" : 2,
                   "lines" : 3,
-                  "line" : 55,
-                  "size" : 15
+                  "size" : 15,
+                  "line" : 55
                },
                {
                   "col" : 13,
                   "sdepth" : 2,
                   "lines" : 3,
-                  "line" : 59,
-                  "size" : 15
+                  "size" : 15,
+                  "line" : 59
                },
                {
                   "col" : 13,
                   "sdepth" : 2,
                   "lines" : 3,
-                  "line" : 63,
-                  "size" : 15
+                  "size" : 15,
+                  "line" : 63
                },
                {
                   "col" : 13,
                   "sdepth" : 2,
                   "lines" : 3,
-                  "line" : 67,
-                  "size" : 15
+                  "size" : 15,
+                  "line" : 67
                }
             ],
             "Sub" : [
@@ -223,85 +223,85 @@
                   "col" : 1,
                   "sdepth" : 1,
                   "lines" : 20,
-                  "line" : 6,
-                  "size" : 255
+                  "size" : 255,
+                  "line" : 6
                },
                {
                   "col" : 1,
                   "sdepth" : 1,
                   "lines" : 3,
-                  "line" : 27,
-                  "size" : 27
+                  "size" : 27,
+                  "line" : 27
                },
                {
                   "col" : 1,
                   "sdepth" : 1,
                   "lines" : 3,
-                  "line" : 31,
-                  "size" : 27
+                  "size" : 27,
+                  "line" : 31
                },
                {
                   "col" : 1,
                   "sdepth" : 1,
                   "lines" : 3,
-                  "line" : 35,
-                  "size" : 27
+                  "size" : 27,
+                  "line" : 35
                },
                {
                   "col" : 1,
                   "sdepth" : 1,
                   "lines" : 3,
-                  "line" : 39,
-                  "size" : 27
+                  "size" : 27,
+                  "line" : 39
                },
                {
                   "col" : 1,
                   "sdepth" : 1,
                   "lines" : 3,
-                  "line" : 43,
-                  "size" : 27
+                  "size" : 27,
+                  "line" : 43
                },
                {
                   "col" : 1,
                   "sdepth" : 1,
                   "lines" : 3,
-                  "line" : 47,
-                  "size" : 27
+                  "size" : 27,
+                  "line" : 47
                },
                {
                   "col" : 1,
                   "sdepth" : 1,
                   "lines" : 3,
-                  "line" : 51,
-                  "size" : 27
+                  "size" : 27,
+                  "line" : 51
                },
                {
                   "col" : 1,
                   "sdepth" : 1,
                   "lines" : 3,
-                  "line" : 55,
-                  "size" : 27
+                  "size" : 27,
+                  "line" : 55
                },
                {
                   "col" : 1,
                   "sdepth" : 1,
                   "lines" : 3,
-                  "line" : 59,
-                  "size" : 27
+                  "size" : 27,
+                  "line" : 59
                },
                {
                   "col" : 1,
                   "sdepth" : 1,
                   "lines" : 3,
-                  "line" : 63,
-                  "size" : 27
+                  "size" : 27,
+                  "line" : 63
                },
                {
                   "col" : 1,
                   "sdepth" : 1,
                   "lines" : 3,
-                  "line" : 67,
-                  "size" : 27
+                  "size" : 27,
+                  "line" : 67
                }
             ]
          },
@@ -310,10 +310,10 @@
    ],
    "ignored_files" : [],
    "metrics" : [
+      "col",
+      "line",
       "lines",
       "sdepth",
-      "size",
-      "line",
-      "col"
+      "size"
    ]
 }

@@ -174,7 +174,7 @@ sub _get_all_submodules_for {
     my ( $self, $type ) = @_;
     my $class = "Code::Statistics::$type";
     require "Code/Statistics/$type.pm";    ## no critic qw( RequireBarewordIncludes )
-    my @list = $class->all;
+    my @list = sort $class->all;
 
     $_ =~ s/$class\::// for @list;
 
