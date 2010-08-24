@@ -96,4 +96,10 @@ sub report {
     return Code::Statistics::Reporter->new( $self->_command_config )->report;
 }
 
+=head1 SEE ALSO
+
+PPI::Tester
+
+=cut
+
 1;
