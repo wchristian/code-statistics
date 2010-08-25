@@ -96,6 +96,12 @@ sub report {
     return Code::Statistics::Reporter->new( $self->_command_config )->report;
 }
 
+=head1 TODO
+
+Possibly elevate metrics to objects to allow parametrized metrics during
+collection. Not sure if i want this or whether making more generic metrics is a
+better idea. http://gist.github.com/549132
+
 =head1 SEE ALSO
 
 PPI::Tester
