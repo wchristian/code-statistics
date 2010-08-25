@@ -2,6 +2,16 @@ Revision history for Perl module {{$dist->name}}
 
 {{$NEXT}}
 
+1.102370  2010-08-25 12:38:42 Europe/Berlin
+    - some internal restructuring
+    - extended capabilities of metrics:
+        - they can declare themselves statistically insignificant now to hint
+          reporters as to how to handle them
+        - they can define a short name for themselves now, for reporters to use
+    - support/incompatible logic actually works now
+    - added calculation of deviation from the standard for each entry in the
+      top/bottom tables
+
 1.102360  2010-08-24 13:28:43 Europe/Berlin
     - this should fix test results being unstable across platforms
 
