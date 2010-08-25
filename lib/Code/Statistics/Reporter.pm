@@ -14,7 +14,7 @@ use Code::Statistics::MooseTypes;
 use Carp 'confess';
 use JSON 'from_json';
 use File::Slurp 'read_file';
-use List::Util qw( reduce max sum );
+use List::Util qw( reduce max sum min );
 use Data::Section -setup;
 use Template;
 use List::MoreUtils qw( uniq );
@@ -128,34 +128,42 @@ sub _process_metric {
     my ( $self, $target_type, $metric ) = @_;
 
     return if "Code::Statistics::Metric::$metric"->is_insignificant;
-    return if !$target_type->{list}[0];
+    return if !$target_type->{list} or !@{$target_type->{list}};
     return if !exists $target_type->{list}[0]{$metric};
 
     my @list = reverse sort { $a->{$metric} <=> $b->{$metric} } @{$target_type->{list}};
-    my @top = grep { defined } @list[ 0 .. $self->table_length - 1 ];
-    @list = grep { defined } @list; # the above autovivifies some entries, this reverses that
 
-    my $metric_data = {
-        top => \@top,
-        type => $metric,
-    };
+    my $metric_data = { type => $metric };
 
-    $metric_data->{bottom} = $self->_get_bottom( @list );
     $metric_data->{avg} = $self->_calc_average( $metric, @list );
-    $metric_data->{widths} = $self->_calc_widths( @{$metric_data->{bottom}}, @top );
-    $metric_data->{columns} = $self->_sort_columns( %{ $metric_data->{widths} } );
+
+    $self->_prepare_metric_tables( $metric_data, @list ) if $metric_data->{avg} and $metric_data->{avg} != 1;
 
     return $metric_data;
 }
 
-sub _calc_widths {
-    my ( $self, $bottom, @list ) = @_;
+sub _prepare_metric_tables {
+    my ( $self, $metric_data, @list ) = @_;
 
-    my @columns = keys %{$list[0]};
+    $metric_data->{top} = $self->_get_top( @list );
+    $metric_data->{bottom} = $self->_get_bottom( @list );
+    $metric_data->{widths} = $self->_calc_widths( $metric_data );
+    $metric_data->{columns} = $self->_sort_columns( %{ $metric_data->{widths} } );
+
+    return;
+}
+
+sub _calc_widths {
+    my ( $self, $metric_data ) = @_;
+
+    my @entries = @{$metric_data->{top}};
+    @entries = ( @entries, @{$metric_data->{bottom}} );
+
+    my @columns = keys %{$entries[0]};
 
     my %widths;
     for my $col ( @columns ) {
-        my @lengths = map { length $_->{$col} } @list, { $col => $col };
+        my @lengths = map { length $_->{$col} } @entries, { $col => $col };
         my $max = max @lengths;
         $widths{$col} = $max;
     }
@@ -174,14 +182,23 @@ sub _calc_average {
     return $average;
 }
 
+sub _get_top {
+    my ( $self, @list ) = @_;
+
+    my $slice_end = min( $#list, $self->table_length - 1 );
+    my @top = grep { defined } @list[ 0 .. $slice_end ];
+
+    return \@top;
+}
+
 sub _get_bottom {
     my ( $self, @list ) = @_;
 
     return [] if @list < $self->table_length;
 
     @list = reverse @list;
-    my @bottom = @list[ 0 .. $self->table_length - 1 ];
-    @list = grep { defined } @list; # the above autovivifies some entries, this reverses that
+    my $slice_end = min( $#list, $self->table_length - 1 );
+    my @bottom = @list[ 0 .. $slice_end ];
 
     my $bottom_size = @list - $self->table_length;
     @bottom = splice @bottom, 0, $bottom_size if $bottom_size < $self->table_length;
@@ -213,7 +230,7 @@ __[ dos_template ]__
     [%- END %]
 
     [%- FOR metric IN target.metrics %]
-        [%- NEXT IF metric.avg == 1 or metric.avg == 0 %]
+        [%- NEXT IF !metric.defined( 'top' ) and !metric.defined( 'bottom' ) %]
 
         [%- " " FILTER repeat( ( 80 - metric.type.length ) / 2 ) %][% metric.type %]
 
