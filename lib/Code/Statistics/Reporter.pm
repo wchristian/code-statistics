@@ -10,6 +10,7 @@ use 5.004;
 use Moose;
 use MooseX::HasDefaults::RO;
 use Code::Statistics::MooseTypes;
+use Code::Statistics::Metric;
 
 use Carp 'confess';
 use JSON 'from_json';

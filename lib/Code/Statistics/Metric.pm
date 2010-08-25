@@ -72,4 +72,16 @@ sub is_insignificant {
     return 0;
 }
 
+=head2 import
+
+    Custom import to ensure that all possible metric plugins are loaded when
+    this module is loaded.
+
+=cut
+
+sub import {
+    Code::Statistics::Metric->all;
+    return;
+}
+
 1;
