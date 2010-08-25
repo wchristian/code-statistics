@@ -91,8 +91,8 @@ sub _process_target_class {
 
 sub _are_compatible {
     my ( $self, $target, $metric ) = @_;
-    return 1 if "Code::Statistics::Target::$target"->supports( $metric );
-    return 1 if "Code::Statistics::Metric::$metric"->supports( $target );
+    return 1 if "Code::Statistics::Target::$target"->force_support( $metric );
+    return 1 if "Code::Statistics::Metric::$metric"->force_support( $target );
     return 0 if "Code::Statistics::Target::$target"->incompatible_with( $metric );
     return 0 if "Code::Statistics::Metric::$metric"->incompatible_with( $target );
     return 1;

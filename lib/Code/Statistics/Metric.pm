@@ -34,19 +34,19 @@ sub incompatible_with {
     return 0;
 }
 
-=head2 supports
-    Returns true if the given target is supported by this metric.
+=head2 force_support
+    Returns true if the given target is forcibly supported by this metric.
     Is called with the metric class name and a string representing the target
     identifiers after 'Code::Statistics::Target::'.
-    Default is that all metrics are compatible with all targets.
+    Default is that no forcing happens.
 
     Has higher precedence than 'incompatible_with' and should be used to
-    incompatibilities set by other targets.
+    override incompatibilities set by other targets.
 =cut
 
-sub supports {
+sub force_support {
     my ( $class, $target ) = @_;
-    return 1;
+    return 0;
 }
 
 1;
