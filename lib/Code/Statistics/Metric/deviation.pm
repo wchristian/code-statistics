@@ -41,7 +41,7 @@ sub is_insignificant {
 
 sub short_name {
     my ( $class ) = @_;
-    return "Dev.";
+    return 'Dev.';
 }
 
 1;

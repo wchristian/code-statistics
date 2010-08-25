@@ -91,13 +91,7 @@ sub _sort_columns {
     @columns = grep { $widths{$_} } @columns;   # remove the ones that have no data
 
     # expand the rest
-    @columns = map {
-        {
-            name => $_,
-            width => $widths{$_},
-            printname => " " . $self->col_short_name($_),
-        }
-    } @columns;
+    @columns = map $self->_make_col_hash( $_, \%widths ), @columns;
 
     # calculate the width left over for the first column
     my $used_width = sum( values %widths ) - $columns[0]{width};
@@ -110,6 +104,19 @@ sub _sort_columns {
     }
 
     return \@columns;
+}
+
+sub _make_col_hash {
+    my ( $self, $col, $widths ) = @_;
+
+    my $short_name = $self->_col_short_name($_);
+    my $col_hash = {
+        name => $_,
+        width => $widths->{$_},
+        printname => " $short_name",
+    };
+
+    return $col_hash;
 }
 
 sub _prepare_target_types {
@@ -176,7 +183,7 @@ sub _calc_deviation {
     my $type = $metric_data->{type};
 
     my $deviation = $line->{$type} / $avg;
-    $line->{deviation} = sprintf( "%.2f", $deviation );
+    $line->{deviation} = sprintf '%.2f', $deviation;
 
     return;
 }
@@ -192,7 +199,7 @@ sub _calc_widths {
     my %widths;
     for my $col ( @columns ) {
         my @lengths = map { length $_->{$col} } @entries;
-        push @lengths, length $self->col_short_name($col);
+        push @lengths, length $self->_col_short_name($col);
         my $max = max @lengths;
         $widths{$col} = $max;
     }
@@ -235,7 +242,7 @@ sub _get_bottom {
     return clone \@bottom;
 }
 
-sub col_short_name {
+sub _col_short_name {
     my ( $self, $col ) = @_;
     return ucfirst "Code::Statistics::Metric::$col"->short_name;
 }
