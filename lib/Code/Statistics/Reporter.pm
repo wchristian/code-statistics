@@ -18,6 +18,7 @@ use List::Util qw( reduce max sum min );
 use Data::Section -setup;
 use Template;
 use List::MoreUtils qw( uniq );
+use Clone::Fast qw( clone );
 
 has quiet => ( isa => 'Bool' );
 
@@ -81,17 +82,31 @@ sub _strip_ignored_files {
 sub _sort_columns {
     my ( $self, %widths ) = @_;
 
-    my @columns = uniq grep { $widths{$_} } qw( path line col ), keys %widths;
+    # get all columns in the right order
+    my @start_columns = qw( path line col );
+    my %end_columns = ( 'deviation' => 1 );
+    my @columns = uniq grep { !$end_columns{$_} } @start_columns, keys %widths;
+    push @columns, keys %end_columns;
 
-    @columns = map {{ name => $_, width => $widths{$_} }} @columns;
+    @columns = grep { $widths{$_} } @columns;   # remove the ones that have no data
 
+    # expand the rest
+    @columns = map {
+        {
+            name => $_,
+            width => $widths{$_},
+            printname => " " . $self->col_short_name($_),
+        }
+    } @columns;
+
+    # calculate the width left over for the first column
     my $used_width = sum( values %widths ) - $columns[0]{width};
-    my $path_width = $self->screen_width - $used_width;
-    $columns[0]{width} = max( $self->min_path_width, $path_width );
+    my $first_col_width = $self->screen_width - $used_width;
 
-    for ( @columns ) {
-        $_->{printname} = ucfirst "Code::Statistics::Metric::$_->{name}"->short_name;
-        $_->{printname} = " $_->{printname}" if $_->{name} ne 'path';
+    # special treatment for the first column
+    for ( @columns[0..0] ) {
+        $_->{width} = max( $self->min_path_width, $first_col_width );
+        $_->{printname} = substr $_->{printname}, 1;
     }
 
     return \@columns;
@@ -147,8 +162,21 @@ sub _prepare_metric_tables {
 
     $metric_data->{top} = $self->_get_top( @list );
     $metric_data->{bottom} = $self->_get_bottom( @list );
+    $self->_calc_deviation( $_, $metric_data ) for ( @{$metric_data->{top}}, @{$metric_data->{bottom}} );
     $metric_data->{widths} = $self->_calc_widths( $metric_data );
     $metric_data->{columns} = $self->_sort_columns( %{ $metric_data->{widths} } );
+
+    return;
+}
+
+sub _calc_deviation {
+    my ( $self, $line, $metric_data ) = @_;
+
+    my $avg = $metric_data->{avg};
+    my $type = $metric_data->{type};
+
+    my $deviation = $line->{$type} / $avg;
+    $line->{deviation} = sprintf( "%.2f", $deviation );
 
     return;
 }
@@ -163,7 +191,8 @@ sub _calc_widths {
 
     my %widths;
     for my $col ( @columns ) {
-        my @lengths = map { length $_->{$col} } @entries, { $col => $col };
+        my @lengths = map { length $_->{$col} } @entries;
+        push @lengths, length $self->col_short_name($col);
         my $max = max @lengths;
         $widths{$col} = $max;
     }
@@ -188,7 +217,7 @@ sub _get_top {
     my $slice_end = min( $#list, $self->table_length - 1 );
     my @top = grep { defined } @list[ 0 .. $slice_end ];
 
-    return \@top;
+    return clone \@top;
 }
 
 sub _get_bottom {
@@ -203,7 +232,12 @@ sub _get_bottom {
     my $bottom_size = @list - $self->table_length;
     @bottom = splice @bottom, 0, $bottom_size if $bottom_size < $self->table_length;
 
-    return \@bottom;
+    return clone \@bottom;
+}
+
+sub col_short_name {
+    my ( $self, $col ) = @_;
+    return ucfirst "Code::Statistics::Metric::$col"->short_name;
 }
 
 1;
