@@ -49,6 +49,19 @@ sub force_support {
     return 0;
 }
 
+=head2 short_name
+    Allows a metric to return a short name, which can be used by shell report
+    builders for example.
+    Default is the class name, with 'Code::Statistics::Metric::' stripped out.
+    Override to customize.
+=cut
+
+sub short_name {
+    my ( $class ) = @_;
+    $class =~ s/Code::Statistics::Metric:://;
+    return $class;
+}
+
 =head2 is_insignificant
     Returns true if the metric is considered statistically insignificant.
     Default is false.

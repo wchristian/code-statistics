@@ -90,7 +90,7 @@ sub _sort_columns {
     $columns[0]{width} = max( $self->min_path_width, $path_width );
 
     for ( @columns ) {
-        $_->{printname} = ucfirst $_->{name};
+        $_->{printname} = ucfirst "Code::Statistics::Metric::$_->{name}"->short_name;
         $_->{printname} = " $_->{printname}" if $_->{name} ne 'path';
     }
 
