@@ -49,4 +49,14 @@ sub force_support {
     return 0;
 }
 
+=head2 is_insignificant
+    Returns true if the metric is considered statistically insignificant.
+    Default is false.
+=cut
+
+sub is_insignificant {
+    my ( $class ) = @_;
+    return 0;
+}
+
 1;

@@ -18,4 +18,16 @@ sub measure {
     return $line;
 }
 
+=head2 is_insignificant
+    Returns true if the metric is considered statistically insignificant.
+
+    Returns false for this class, since it only identifies the location of a
+    target.
+=cut
+
+sub is_insignificant {
+    my ( $class ) = @_;
+    return 1;
+}
+
 1;

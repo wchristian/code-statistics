@@ -127,7 +127,7 @@ sub _process_target_type {
 sub _process_metric {
     my ( $self, $target_type, $metric ) = @_;
 
-    return if $self->_is_only_loc_metric( $metric );
+    return if "Code::Statistics::Metric::$metric"->is_insignificant;
     return if !$target_type->{list}[0];
     return if !exists $target_type->{list}[0]{$metric};
 
@@ -163,13 +163,6 @@ sub _calc_widths {
     $_++ for values %widths;
 
     return \%widths;
-}
-
-sub _is_only_loc_metric {
-    my ( $self, $metric ) = @_;
-    return 1 if $metric eq 'line';
-    return 1 if $metric eq 'col';
-    return 0;
 }
 
 sub _calc_average {
