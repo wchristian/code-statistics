@@ -7,7 +7,7 @@ package Code::Statistics::Target;
 
 use 5.004;
 
-use Module::Pluggable search_path => __PACKAGE__, sub_name => 'all';
+use Module::Pluggable search_path => __PACKAGE__, require => 1, sub_name => 'all';
 
 =head2 find_targets
     Returns an arrayref to a list of targets found in the given file.
