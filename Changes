@@ -2,6 +2,9 @@ Revision history for Perl module {{$dist->name}}
 
 {{$NEXT}}
 
+1.102371  2010-08-25 15:27:25 Europe/Berlin
+    - fixes reporter module so it now loads all metric plugins it needs
+
 1.102370  2010-08-25 12:38:42 Europe/Berlin
     - some internal restructuring
     - extended capabilities of metrics:
