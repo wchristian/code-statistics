@@ -9,6 +9,7 @@
          "measurements" : {
             "RootDocument" : [
                {
+                  "ccomp" : 1,
                   "col" : 1,
                   "sdepth" : 0,
                   "lines" : 6,
@@ -23,6 +24,7 @@
          "measurements" : {
             "RootDocument" : [
                {
+                  "ccomp" : 1,
                   "col" : 1,
                   "sdepth" : 0,
                   "lines" : 6,
@@ -37,6 +39,7 @@
          "measurements" : {
             "RootDocument" : [
                {
+                  "ccomp" : 1,
                   "col" : 1,
                   "sdepth" : 0,
                   "lines" : 10,
@@ -46,6 +49,7 @@
             ],
             "Block" : [
                {
+                  "ccomp" : 1,
                   "col" : 10,
                   "sdepth" : 2,
                   "lines" : 3,
@@ -55,6 +59,7 @@
             ],
             "Sub" : [
                {
+                  "ccomp" : 1,
                   "col" : 1,
                   "sdepth" : 1,
                   "lines" : 3,
@@ -69,6 +74,7 @@
          "measurements" : {
             "RootDocument" : [
                {
+                  "ccomp" : 9,
                   "col" : 1,
                   "sdepth" : 0,
                   "lines" : 71,
@@ -78,6 +84,7 @@
             ],
             "Block" : [
                {
+                  "ccomp" : 9,
                   "col" : 22,
                   "sdepth" : 2,
                   "lines" : 20,
@@ -85,6 +92,7 @@
                   "line" : 6
                },
                {
+                  "ccomp" : 8,
                   "col" : 12,
                   "sdepth" : 4,
                   "lines" : 17,
@@ -92,6 +100,7 @@
                   "line" : 7
                },
                {
+                  "ccomp" : 7,
                   "col" : 12,
                   "sdepth" : 6,
                   "lines" : 15,
@@ -99,6 +108,7 @@
                   "line" : 8
                },
                {
+                  "ccomp" : 6,
                   "col" : 12,
                   "sdepth" : 8,
                   "lines" : 13,
@@ -106,6 +116,7 @@
                   "line" : 9
                },
                {
+                  "ccomp" : 5,
                   "col" : 12,
                   "sdepth" : 10,
                   "lines" : 11,
@@ -113,6 +124,7 @@
                   "line" : 10
                },
                {
+                  "ccomp" : 4,
                   "col" : 16,
                   "sdepth" : 12,
                   "lines" : 9,
@@ -120,6 +132,7 @@
                   "line" : 11
                },
                {
+                  "ccomp" : 3,
                   "col" : 20,
                   "sdepth" : 14,
                   "lines" : 7,
@@ -127,6 +140,7 @@
                   "line" : 12
                },
                {
+                  "ccomp" : 2,
                   "col" : 24,
                   "sdepth" : 16,
                   "lines" : 5,
@@ -134,6 +148,7 @@
                   "line" : 13
                },
                {
+                  "ccomp" : 1,
                   "col" : 28,
                   "sdepth" : 18,
                   "lines" : 3,
@@ -141,6 +156,7 @@
                   "line" : 14
                },
                {
+                  "ccomp" : 1,
                   "col" : 13,
                   "sdepth" : 2,
                   "lines" : 3,
@@ -148,6 +164,7 @@
                   "line" : 27
                },
                {
+                  "ccomp" : 1,
                   "col" : 13,
                   "sdepth" : 2,
                   "lines" : 3,
@@ -155,6 +172,7 @@
                   "line" : 31
                },
                {
+                  "ccomp" : 1,
                   "col" : 13,
                   "sdepth" : 2,
                   "lines" : 3,
@@ -162,6 +180,7 @@
                   "line" : 35
                },
                {
+                  "ccomp" : 1,
                   "col" : 13,
                   "sdepth" : 2,
                   "lines" : 3,
@@ -169,6 +188,7 @@
                   "line" : 39
                },
                {
+                  "ccomp" : 1,
                   "col" : 13,
                   "sdepth" : 2,
                   "lines" : 3,
@@ -176,6 +196,7 @@
                   "line" : 43
                },
                {
+                  "ccomp" : 1,
                   "col" : 13,
                   "sdepth" : 2,
                   "lines" : 3,
@@ -183,6 +204,7 @@
                   "line" : 47
                },
                {
+                  "ccomp" : 1,
                   "col" : 13,
                   "sdepth" : 2,
                   "lines" : 3,
@@ -190,6 +212,7 @@
                   "line" : 51
                },
                {
+                  "ccomp" : 1,
                   "col" : 13,
                   "sdepth" : 2,
                   "lines" : 3,
@@ -197,6 +220,7 @@
                   "line" : 55
                },
                {
+                  "ccomp" : 1,
                   "col" : 13,
                   "sdepth" : 2,
                   "lines" : 3,
@@ -204,6 +228,7 @@
                   "line" : 59
                },
                {
+                  "ccomp" : 1,
                   "col" : 13,
                   "sdepth" : 2,
                   "lines" : 3,
@@ -211,6 +236,7 @@
                   "line" : 63
                },
                {
+                  "ccomp" : 1,
                   "col" : 13,
                   "sdepth" : 2,
                   "lines" : 3,
@@ -220,6 +246,7 @@
             ],
             "Sub" : [
                {
+                  "ccomp" : 9,
                   "col" : 1,
                   "sdepth" : 1,
                   "lines" : 20,
@@ -227,6 +254,7 @@
                   "line" : 6
                },
                {
+                  "ccomp" : 1,
                   "col" : 1,
                   "sdepth" : 1,
                   "lines" : 3,
@@ -234,6 +262,7 @@
                   "line" : 27
                },
                {
+                  "ccomp" : 1,
                   "col" : 1,
                   "sdepth" : 1,
                   "lines" : 3,
@@ -241,6 +270,7 @@
                   "line" : 31
                },
                {
+                  "ccomp" : 1,
                   "col" : 1,
                   "sdepth" : 1,
                   "lines" : 3,
@@ -248,6 +278,7 @@
                   "line" : 35
                },
                {
+                  "ccomp" : 1,
                   "col" : 1,
                   "sdepth" : 1,
                   "lines" : 3,
@@ -255,6 +286,7 @@
                   "line" : 39
                },
                {
+                  "ccomp" : 1,
                   "col" : 1,
                   "sdepth" : 1,
                   "lines" : 3,
@@ -262,6 +294,7 @@
                   "line" : 43
                },
                {
+                  "ccomp" : 1,
                   "col" : 1,
                   "sdepth" : 1,
                   "lines" : 3,
@@ -269,6 +302,7 @@
                   "line" : 47
                },
                {
+                  "ccomp" : 1,
                   "col" : 1,
                   "sdepth" : 1,
                   "lines" : 3,
@@ -276,6 +310,7 @@
                   "line" : 51
                },
                {
+                  "ccomp" : 1,
                   "col" : 1,
                   "sdepth" : 1,
                   "lines" : 3,
@@ -283,6 +318,7 @@
                   "line" : 55
                },
                {
+                  "ccomp" : 1,
                   "col" : 1,
                   "sdepth" : 1,
                   "lines" : 3,
@@ -290,6 +326,7 @@
                   "line" : 59
                },
                {
+                  "ccomp" : 1,
                   "col" : 1,
                   "sdepth" : 1,
                   "lines" : 3,
@@ -297,6 +334,7 @@
                   "line" : 63
                },
                {
+                  "ccomp" : 1,
                   "col" : 1,
                   "sdepth" : 1,
                   "lines" : 3,
@@ -310,6 +348,7 @@
    ],
    "ignored_files" : [],
    "metrics" : [
+      "ccomp",
       "col",
       "deviation",
       "line",
