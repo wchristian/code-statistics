@@ -2,6 +2,11 @@ Revision history for Perl module {{$dist->name}}
 
 {{$NEXT}}
 
+1.102390  2010-08-27 18:00:02 Europe/Berlin
+    - report columns are now always in alphabetic order
+    - cyclomatic complexity metric added
+    - made tests ignore a piece of cross-platform weirdness
+
 1.102371  2010-08-25 15:27:25 Europe/Berlin
     - fixes reporter module so it now loads all metric plugins it needs
 
