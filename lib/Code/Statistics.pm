@@ -53,7 +53,7 @@ use Code::Statistics::Reporter;
 
 use Moose;
 use MooseX::HasDefaults::RO;
-use Code::Statistics::SlurpyConstructor;
+use MooseX::SlurpyConstructor 1.1;
 
 has config_args => (
     is      => 'ro',
