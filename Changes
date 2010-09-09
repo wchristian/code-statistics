@@ -1,6 +1,11 @@
 Revision history for Perl module {{$dist->name}}
 
 {{$NEXT}}
+    - switched from Clone::Fast to Clone, due to Clone::Fast not working above perl 5.10 ( thanks to sergey.aleynikov@gmail.com )
+    - added nop target
+    - migrated to fixed MooseX::SlurpyConstructor ( thanks to Mark Morgan <makk384@gmail.com> )
+    - switched to a faster complexity calculation routine for the time being
+    - enabled canonical for JSON to see if that fixes the cross-platform issues with hash keys
 
 1.102390  2010-08-27 18:00:02 Europe/Berlin
     - report columns are now always in alphabetic order
