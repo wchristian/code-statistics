@@ -2,7 +2,8 @@
    "targets" : [
       "Block",
       "RootDocument",
-      "Sub"
+      "Sub",
+      "nop"
    ],
    "files" : [
       {
