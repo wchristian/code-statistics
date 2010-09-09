@@ -2,6 +2,9 @@ Revision history for Perl module {{$dist->name}}
 
 {{$NEXT}}
 
+1.102521  2010-09-10 01:28:33 Europe/Berlin
+    - updated tests to fit JSON sorting
+
 1.102520  2010-09-09 23:46:51 Europe/Berlin
     - switched from Clone::Fast to Clone, due to Clone::Fast not working above perl 5.10 ( thanks to sergey.aleynikov@gmail.com )
     - added nop target
