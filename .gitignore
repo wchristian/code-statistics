@@ -7,3 +7,5 @@
 /.cover
 /cover_db
 Code-Statistics-*
+/nytprof
+/nytprof.out
