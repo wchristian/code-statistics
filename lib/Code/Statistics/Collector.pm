@@ -133,7 +133,7 @@ sub _measurements_as_json {
         ignored_files => \@ignored_files
     };
 
-    my $json = to_json( $measurements, { pretty => 1 } );
+    my $json = to_json( $measurements, { pretty => 1, canonical => 1 } );
 
     return $json;
 }
