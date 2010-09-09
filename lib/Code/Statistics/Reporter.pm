@@ -19,7 +19,7 @@ use List::Util qw( reduce max sum min );
 use Data::Section -setup;
 use Template;
 use List::MoreUtils qw( uniq );
-use Clone::Fast qw( clone );
+use Clone qw( clone );
 
 has quiet => ( isa => 'Bool' );
 
