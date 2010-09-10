@@ -71,7 +71,17 @@ sub check_codestat_shell_app_against {
     ok_regression(
         sub {
             my $result = Code::Statistics::App->run;
-            $result =~ s/2.62\n/2.63\n/ if grep { $_ eq 'report' } @ARGV;
+            if ( grep { $_ eq 'report' } @ARGV ) {
+                $result =~ s/2.62\n/2.63\n/;
+                $result =~ s/^(ccomp: 3.66)\d+/$1/m;
+                $result =~ s/^(ccomp: 2.71)\d+/$1/m;
+                $result =~ s/^(ccomp: 1.61)\d+/$1/m;
+                $result =~ s/^(lines: 6.47)\d+/$1/m;
+                $result =~ s/^(lines: 4.30)\d+/$1/m;
+                $result =~ s/^(sdepth: 5.42)\d+/$1/m;
+                $result =~ s/^(size: 69.42)\d+/$1/m;
+                $result =~ s/^(size: 44.30)\d+/$1/m;
+            }
             return $result;
         },
         $file,
