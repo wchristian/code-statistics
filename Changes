@@ -2,6 +2,9 @@ Revision history for Perl module {{$dist->name}}
 
 {{$NEXT}}
 
+1.103260  2010-11-22 10:28:37 Europe/Berlin
+    - actually added bin/codestat to the distribution now
+
 1.102530  2010-09-10 14:53:10 Europe/Berlin
     - updated testing some more to handle cross-platform math inaccuracies
 
