@@ -4,8 +4,16 @@ use warnings;
 
 package codestat;
 
+# ABSTRACT: gather code statistics on the command line
+
 use Code::Statistics::App;
 
 local @ARGV = qw( commands ) if !@ARGV;    # make sure it prints the global options by default
 
 Code::Statistics::App->run;
+
+=head1 DESCRIPTION
+
+See L<Code::Statistics> for use instructions.
+
+=cut
