@@ -2,6 +2,9 @@ Revision history for Perl module {{$dist->name}}
 
 {{$NEXT}}
 
+1.112980  2011-10-26 01:33:52 Asia/Kamchatka
+    - fixed argument-less calling of commands, ( thanks to Gregor Goldbach )
+
 1.103260  2010-11-22 10:28:37 Europe/Berlin
     - actually added bin/codestat to the distribution now
 
