@@ -58,6 +58,7 @@ use MooseX::SlurpyConstructor 1.1;
 has config_args => (
     is      => 'ro',
     slurpy  => 1,
+    default => sub { {} },
 );
 
 sub _command_config {

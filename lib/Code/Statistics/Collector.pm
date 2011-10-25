@@ -62,6 +62,7 @@ has progress_bar => (
 has command_args => (
     is      => 'ro',
     slurpy  => 1,
+    default => sub { {} },
 );
 
 =head2 collect
