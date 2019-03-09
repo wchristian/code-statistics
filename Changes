@@ -1,6 +1,7 @@
 Revision history for Perl module {{$dist->name}}
 
 {{$NEXT}}
+    - updated dist.ini to 2018
 
 1.112980  2011-10-26 01:33:52 Asia/Kamchatka
     - fixed argument-less calling of commands, ( thanks to Gregor Goldbach )
