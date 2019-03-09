@@ -136,7 +136,11 @@ sub _prepare_target_types {
 
     $target_types{$_}->{type} = $_ for keys %target_types;
 
-    return [ values %target_types ];
+    my $i     = 0;
+    my %pref  = map +( $_ => ++$i ), reverse qw( RootDocument Block Sub nop );
+    my @types = reverse sort { ( $pref{$a} || 0 ) <=> ( $pref{$b} || 0 ) } reverse sort keys %target_types;
+
+    return [ map $target_types{$_}, @types ];
 }
 
 sub _process_target_type {
