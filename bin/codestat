@@ -6,6 +6,7 @@ package codestat;
 
 # ABSTRACT: gather code statistics on the command line
 
+use Devel::Confess;
 use Code::Statistics::App;
 
 local @ARGV = qw( commands ) if !@ARGV;    # make sure it prints the global options by default
