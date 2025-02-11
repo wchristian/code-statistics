@@ -1,4 +1,3 @@
-
 *.kpf
 /.build
 /dev.bat
@@ -9,3 +8,4 @@
 Code-Statistics-*
 /nytprof
 /nytprof.out
+.vscode
