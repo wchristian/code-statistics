@@ -1,7 +1,6 @@
 package Test::BinRegression;
 
-use warnings;
-use strict;
+use strictures 2;
 use FileHandle;
 
 =head1 NAME
