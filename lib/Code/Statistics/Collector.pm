@@ -92,6 +92,7 @@ sub _find_files {
         File::Find::Rule->file->name('*.cgi')->in( @{ $self->dirs } ),
     );
     @files = sort { lc $a cmp lc $b } @files;
+    @files = $self->_filter_skipped(@files);
     return @files;
 }
 
@@ -155,18 +156,22 @@ sub _find_ignored_files {
 
     my @all_files = File::Find::Rule->file->in( @{ $self->dirs } );
     @all_files = grep { !$present_files{$_} } @all_files;
+    return $self->_filter_skipped(@all_files);
+}
+
+sub _filter_skipped {
+    my ( $self, @files ) = @_;
     my $useless_stuff = qr{
         (^|/)
             (
                 [.]git   |   [.]svn   |   cover_db   |   [.]build   |   nytprof   |
-                blib
+                blib   | [.]vscode
             )
         /
     }x;
-    @all_files = grep { $_ !~ $useless_stuff }
-      @all_files;    # filter out files we most certainly do not care about
-
-    return @all_files;
+    @files = grep { $_ !~ $useless_stuff }
+      @files;    # filter out files we most certainly do not care about
+    return @files;
 }
 
 =head2 _strip_file
