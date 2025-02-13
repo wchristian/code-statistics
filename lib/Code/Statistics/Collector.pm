@@ -52,10 +52,14 @@ has progress_bar => (
     isa     => 'Term::ProgressBar::Simple',
     lazy    => 1,
     default => sub {
-        my $params =
-          { name => 'Files', ETA => 'linear', max_update_rate => '0.1' };
-        $params->{count} = @{ $_[0]->files };
-        return Term::ProgressBar::Simple->new($params);
+        Term::ProgressBar::Simple->new(
+            {
+                name            => "Files (                         )",
+                ETA             => 'linear',
+                max_update_rate => '0.1',
+                count           => scalar @{ $_[0]->files },
+            }
+        );
     },
 );
 
@@ -106,7 +110,12 @@ sub _prepare_file {
         original_path => $path,
         targets       => $self->targets,
         metrics       => $self->metrics,
-        progress      => sub { $self->progress_bar->increment },
+        progress      => sub {
+            my $n = length($path) <= 25 ? sprintf( "%-25s", $path )    #
+              :   substr( $path, 0, 7 ) . '...' . substr( $path, -15 );
+            $self->progress_bar->{tpq}->name("Files ($n)");
+            $self->progress_bar->increment;
+        },
     );
 
     return Code::Statistics::File->new( %params, %{ $self->command_args } );
