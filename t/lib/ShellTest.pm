@@ -7,6 +7,7 @@ use parent 'Test::Class::TestGroup';
 use Test::More;
 use Test::BinRegression;
 use File::Slurp 'read_file';
+use Term::ProgressBar::Quiet;
 
 use Code::Statistics::App;
 
@@ -23,6 +24,12 @@ sub make_fixture : Test(setup) {
           --global_conf_file=data/config/does_not_exist
         )
     ];
+
+    no warnings 'redefine';
+    *Term::ProgressBar::Quiet::new = sub {
+        Test::MockObject->new->set_true('update')->set_true('message')
+          ->set_true('name');
+    };
 
     return;
 }

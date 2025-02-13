@@ -11,7 +11,8 @@
                   "sdepth" : 0,
                   "size" : 38
                }
-            ]
+            ],
+            "SubAnon" : []
          },
          "path" : "data/shelltest/basic_collect/Empty.pm"
       },
@@ -26,7 +27,8 @@
                   "sdepth" : 0,
                   "size" : 40
                }
-            ]
+            ],
+            "SubAnon" : []
          },
          "path" : "data/shelltest/basic_collect/Ignored.pm"
       },
@@ -61,7 +63,8 @@
                   "sdepth" : 1,
                   "size" : 24
                }
-            ]
+            ],
+            "SubAnon" : []
          },
          "path" : "data/shelltest/basic_collect/OneSub.pm"
       },
@@ -74,7 +77,7 @@
                   "line" : 5,
                   "lines" : 20,
                   "sdepth" : 2,
-                  "size" : 234
+                  "size" : 430
                },
                {
                   "ccomp" : 8,
@@ -82,63 +85,63 @@
                   "line" : 6,
                   "lines" : 17,
                   "sdepth" : 4,
-                  "size" : 207
+                  "size" : 403
                },
                {
                   "ccomp" : 7,
-                  "col" : 12,
+                  "col" : 16,
                   "line" : 7,
                   "lines" : 15,
                   "sdepth" : 6,
-                  "size" : 188
+                  "size" : 380
                },
                {
                   "ccomp" : 6,
-                  "col" : 12,
+                  "col" : 20,
                   "line" : 8,
                   "lines" : 13,
                   "sdepth" : 8,
-                  "size" : 169
+                  "size" : 349
                },
                {
                   "ccomp" : 5,
-                  "col" : 12,
+                  "col" : 24,
                   "line" : 9,
                   "lines" : 11,
                   "sdepth" : 10,
-                  "size" : 150
+                  "size" : 310
                },
                {
                   "ccomp" : 4,
-                  "col" : 16,
+                  "col" : 28,
                   "line" : 10,
                   "lines" : 9,
                   "sdepth" : 12,
-                  "size" : 127
+                  "size" : 263
                },
                {
                   "ccomp" : 3,
-                  "col" : 20,
+                  "col" : 32,
                   "line" : 11,
                   "lines" : 7,
                   "sdepth" : 14,
-                  "size" : 100
+                  "size" : 208
                },
                {
                   "ccomp" : 2,
-                  "col" : 24,
+                  "col" : 36,
                   "line" : 12,
                   "lines" : 5,
                   "sdepth" : 16,
-                  "size" : 69
+                  "size" : 145
                },
                {
                   "ccomp" : 1,
-                  "col" : 28,
+                  "col" : 40,
                   "line" : 13,
                   "lines" : 3,
                   "sdepth" : 18,
-                  "size" : 34
+                  "size" : 74
                },
                {
                   "ccomp" : 1,
@@ -236,7 +239,7 @@
                   "line" : 1,
                   "lines" : 70,
                   "sdepth" : 0,
-                  "size" : 617
+                  "size" : 813
                }
             ],
             "Sub" : [
@@ -246,7 +249,7 @@
                   "line" : 5,
                   "lines" : 20,
                   "sdepth" : 1,
-                  "size" : 255
+                  "size" : 451
                },
                {
                   "ccomp" : 1,
@@ -336,7 +339,8 @@
                   "sdepth" : 1,
                   "size" : 27
                }
-            ]
+            ],
+            "SubAnon" : []
          },
          "path" : "data/shelltest/basic_collect/SomeSubs.pm"
       }
@@ -356,6 +360,7 @@
       "Block",
       "RootDocument",
       "Sub",
+      "SubAnon",
       "nop"
    ]
 }
