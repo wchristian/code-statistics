@@ -23,8 +23,8 @@ use File::Find::Rule;
 has no_dump => ( isa => 'Bool' );
 
 has dirs => (
-    isa    => 'CS::InputList',
-    coerce => 1,
+    isa     => 'CS::InputList',
+    coerce  => 1,
     default => sub { ['.'] },
 );
 
@@ -52,9 +52,10 @@ has progress_bar => (
     isa     => 'Term::ProgressBar::Simple',
     lazy    => 1,
     default => sub {
-        my $params = { name => 'Files', ETA => 'linear', max_update_rate => '0.1' };
+        my $params =
+          { name => 'Files', ETA => 'linear', max_update_rate => '0.1' };
         $params->{count} = @{ $_[0]->files };
-        return Term::ProgressBar::Simple->new( $params );
+        return Term::ProgressBar::Simple->new($params);
     },
 );
 
@@ -70,30 +71,30 @@ has command_args => (
 =cut
 
 sub collect {
-    my ( $self ) = @_;
+    my ($self) = @_;
 
     $_->analyze for @{ $self->files };
 
     my $json = $self->_measurements_as_json;
-    $self->_dump_file_measurements( $json );
+    $self->_dump_file_measurements($json);
 
     return $json;
 }
 
 sub _find_files {
-    my ( $self ) = @_;
+    my ($self) = @_;
     my @files = (
         File::Find::Rule::Perl->perl_file->in( @{ $self->dirs } ),
-        File::Find::Rule->file->name( '*.cgi' )->in( @{ $self->dirs } ),
+        File::Find::Rule->file->name('*.cgi')->in( @{ $self->dirs } ),
     );
     @files = sort { lc $a cmp lc $b } @files;
     return @files;
 }
 
 sub _prepare_files {
-    my ( $self ) = @_;
+    my ($self) = @_;
     my @files = $self->_find_files;
-    @files = map $self->_prepare_file( $_ ), @files;
+    @files = map $self->_prepare_file($_), @files;
     return \@files;
 }
 
@@ -101,14 +102,14 @@ sub _prepare_file {
     my ( $self, $path ) = @_;
 
     my %params = (
-        path      => $path,
+        path          => $path,
         original_path => $path,
-        targets   => $self->targets,
-        metrics   => $self->metrics,
-        progress => sub { $self->progress_bar->increment },
+        targets       => $self->targets,
+        metrics       => $self->metrics,
+        progress      => sub { $self->progress_bar->increment },
     );
 
-    return Code::Statistics::File->new( %params, %{$self->command_args} );
+    return Code::Statistics::File->new( %params, %{ $self->command_args } );
 }
 
 sub _dump_file_measurements {
@@ -121,15 +122,15 @@ sub _dump_file_measurements {
 }
 
 sub _measurements_as_json {
-    my ( $self ) = @_;
+    my ($self) = @_;
 
-    my @files = map $self->_strip_file( $_ ), @{ $self->files };
+    my @files         = map $self->_strip_file($_), @{ $self->files };
     my @ignored_files = $self->_find_ignored_files( @{ $self->files } );
 
     my $measurements = {
-        files => \@files,
-        targets => $self->targets,
-        metrics => $self->metrics,
+        files         => \@files,
+        targets       => $self->targets,
+        metrics       => $self->metrics,
         ignored_files => \@ignored_files
     };
 
@@ -153,7 +154,8 @@ sub _find_ignored_files {
             )
         /
     }x;
-    @all_files = grep { $_ !~ $useless_stuff } @all_files; # filter out files we most certainly do not care about
+    @all_files = grep { $_ !~ $useless_stuff }
+      @all_files;    # filter out files we most certainly do not care about
 
     return @all_files;
 }
@@ -172,7 +174,7 @@ sub _strip_file {
 sub _get_all_submodules_for {
     my ( $self, $type ) = @_;
     my $class = "Code::Statistics::$type";
-    my @list = sort $class->all;
+    my @list  = sort $class->all;
 
     $_ =~ s/$class\::// for @list;
 

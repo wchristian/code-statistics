@@ -11,6 +11,6 @@ extends 'Code::Statistics::Target';
     Returns nothing.
 =cut
 
-sub find_targets {}
+sub find_targets { }
 
 1;

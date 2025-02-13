@@ -4,21 +4,21 @@ package ManySubs;
 
 sub _sub_with_blocks {
     if (1) {
-    if (1) {
-    if (1) {
-    if (1) {
         if (1) {
             if (1) {
                 if (1) {
                     if (1) {
-                        1;
-    }
-    }
-    }
-    }
-    }
-    }
-    }
+                        if (1) {
+                            if (1) {
+                                if (1) {
+                                    1;
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
     }
     return;
 }

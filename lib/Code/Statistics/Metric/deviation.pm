@@ -28,7 +28,7 @@ sub incompatible_with {
 =cut
 
 sub is_insignificant {
-    my ( $class ) = @_;
+    my ($class) = @_;
     return 1;
 }
 
@@ -39,7 +39,7 @@ sub is_insignificant {
 =cut
 
 sub short_name {
-    my ( $class ) = @_;
+    my ($class) = @_;
     return 'Dev.';
 }
 

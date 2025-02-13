@@ -11,21 +11,23 @@ use Test::More;
 use Code::Statistics::Config;
 
 sub make_fixtures : Test(setup) {
-    my ( $self ) = @_;
+    my ($self) = @_;
 
     $self->{conf_args} = {
         global_conf_file => 'data/config/globalcodestatrc',
-        conf_file =>        'data/config/codestatrc',
-        command =>        'collect',
-        profile =>        'test',
-        args =>        { overridden_by_args => 7 },
+        conf_file        => 'data/config/codestatrc',
+        command          => 'collect',
+        profile          => 'test',
+        args             => { overridden_by_args => 7 },
     };
 
     return;
 }
 
-sub overrides_basic : TestGroup(configuration overrides work if all config inputs are present and active) {
-    my ( $self ) = @_;
+sub overrides_basic :
+  TestGroup(configuration overrides work if all config inputs are present and active)
+{
+    my ($self) = @_;
 
     my $config = Code::Statistics::Config->new( $self->{conf_args} )->assemble;
 
@@ -44,8 +46,9 @@ sub overrides_basic : TestGroup(configuration overrides work if all config input
     return;
 }
 
-sub overrides_no_profile : TestGroup(configuration overrides work if all no profile is given) {
-    my ( $self ) = @_;
+sub overrides_no_profile :
+  TestGroup(configuration overrides work if all no profile is given) {
+    my ($self) = @_;
 
     delete $self->{conf_args}{profile};
 
@@ -66,8 +69,9 @@ sub overrides_no_profile : TestGroup(configuration overrides work if all no prof
     return;
 }
 
-sub overrides_no_file : TestGroup(configuration overrides work if a file argument is empty) {
-    my ( $self ) = @_;
+sub overrides_no_file :
+  TestGroup(configuration overrides work if a file argument is empty) {
+    my ($self) = @_;
 
     $self->{conf_args}{conf_file} = '';
 

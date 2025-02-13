@@ -9,7 +9,7 @@ use App::Cmd::Setup -app;
 use Code::Statistics;
 
 sub global_opt_spec {
-    my @opts             = (
+    my @opts = (
         [ 'global_conf_file|g=s' => 'path to the global config file' ],
         [ 'conf_file|c=s'        => 'path to the local config file' ],
         [ 'profile|p=s'          => 'a configuration profile' ],
@@ -24,7 +24,10 @@ sub global_opt_spec {
 sub cstat {
     my ( $self, %command_args ) = @_;
 
-    my %args = ( %{ $self->global_options }, command => ( $self->get_command( @ARGV ) )[0], );
+    my %args = (
+        %{ $self->global_options },
+        command => ( $self->get_command(@ARGV) )[0],
+    );
 
     return Code::Statistics->new( %args, args => \%command_args );
 }

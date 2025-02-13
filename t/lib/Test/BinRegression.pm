@@ -61,36 +61,38 @@ with bin mode if set to true.
 =cut
 
 sub ok_regression {
-	my $code_ref = shift;
-	my $file = shift;
-	my $test_name = shift;
-	my $bin_mode = shift;
-	my $output = eval {&$code_ref();};
-	my $tb = $CLASS->builder;
-	if ($@) {
-		$tb->diag($@);
-		return $tb->ok(0, $test_name);
-	}
+    my $code_ref  = shift;
+    my $file      = shift;
+    my $test_name = shift;
+    my $bin_mode  = shift;
+    my $output    = eval { &$code_ref(); };
+    my $tb        = $CLASS->builder;
+    if ($@) {
+        $tb->diag($@);
+        return $tb->ok( 0, $test_name );
+    }
 
-	# generate the output files if required
-	if ($ENV{TEST_REGRESSION_GEN}) {
-		my $fh = FileHandle->new;
-		$fh->open(">$file") ||  return $tb->ok(0, "$test_name: cannot open $file");
-		$fh->binmode if $bin_mode;
-		if (length $output) {
-			$fh->print($output) || return $tb->ok(0, "actual write failed: $file");
-		}
-		return $tb->ok(1, $test_name);
-	}
+    # generate the output files if required
+    if ( $ENV{TEST_REGRESSION_GEN} ) {
+        my $fh = FileHandle->new;
+        $fh->open(">$file")
+          || return $tb->ok( 0, "$test_name: cannot open $file" );
+        $fh->binmode if $bin_mode;
+        if ( length $output ) {
+            $fh->print($output)
+              || return $tb->ok( 0, "actual write failed: $file" );
+        }
+        return $tb->ok( 1, $test_name );
+    }
 
-	# compare the files
-	return $tb->ok(0, "$test_name: cannot read $file") unless -r $file;
-	my $fh = FileHandle->new;
-	$fh->open("<$file") ||  return $tb->ok(0, "$test_name: cannot open $file");
-	$fh->binmode if $bin_mode;
-	my $content = join '', (<$fh>);
-	eq_or_diff($output, $content, $test_name);
-	return $output eq $file;
+    # compare the files
+    return $tb->ok( 0, "$test_name: cannot read $file" ) unless -r $file;
+    my $fh = FileHandle->new;
+    $fh->open("<$file") || return $tb->ok( 0, "$test_name: cannot open $file" );
+    $fh->binmode if $bin_mode;
+    my $content = join '', (<$fh>);
+    eq_or_diff( $output, $content, $test_name );
+    return $output eq $file;
 }
 
 =head1 ENVIRONMENT VARIABLES
@@ -170,4 +172,4 @@ See http://dev.perl.org/licenses/ for more information.
 
 =cut
 
-1; # End of Test::Regression
+1;    # End of Test::Regression

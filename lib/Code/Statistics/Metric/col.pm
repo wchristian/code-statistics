@@ -25,7 +25,7 @@ sub measure {
 =cut
 
 sub is_insignificant {
-    my ( $class ) = @_;
+    my ($class) = @_;
     return 1;
 }
 

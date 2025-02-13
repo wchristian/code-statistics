@@ -16,7 +16,7 @@ use Perl::Critic::Utils::McCabe 'calculate_mccabe_of_sub';
 sub measure {
     my ( $class, $target ) = @_;
 
-    my $complexity = calculate_mccabe_of_sub( $target );
+    my $complexity = calculate_mccabe_of_sub($target);
 
     return $complexity;
 }

@@ -11,7 +11,7 @@ use App::Cmd::Setup -command;
 =cut
 
 sub cstat {
-    return shift->app->cstat( @_ );
+    return shift->app->cstat(@_);
 }
 
 1;

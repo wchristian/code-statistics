@@ -14,7 +14,7 @@ use PPI::Document;
 use Path::Class qw(file);
 
 has relative_paths => ( isa => 'Bool' );
-has foreign_paths => ( isa => 'Str' );
+has foreign_paths  => ( isa => 'Str' );
 
 has path => (
     isa      => 'Str',
@@ -27,13 +27,13 @@ has original_path => (
 );
 
 has targets => (
-    isa     => 'CS::InputList',
-    coerce  => 1,
+    isa    => 'CS::InputList',
+    coerce => 1,
 );
 
 has metrics => (
-    isa     => 'CS::InputList',
-    coerce  => 1,
+    isa    => 'CS::InputList',
+    coerce => 1,
 );
 
 has ppi => (
@@ -51,9 +51,9 @@ has progress => ( isa => 'CodeRef' );
 =cut
 
 sub analyze {
-    my ( $self ) = @_;
+    my ($self) = @_;
 
-    $self->_process_target_class( $_ ) for @{ $self->targets };
+    $self->_process_target_class($_) for @{ $self->targets };
     $self->_format_file_path;
     $self->progress->();
 
@@ -61,7 +61,7 @@ sub analyze {
 }
 
 sub _format_file_path {
-    my ( $self ) = @_;
+    my ($self) = @_;
     my $path = file( $self->path );
 
     $path = $path->relative if $self->relative_paths;
@@ -76,13 +76,15 @@ sub _format_file_path {
 sub _process_target_class {
     my ( $self, $target_type ) = @_;
 
-    my @supported_metrics = grep $self->_are_compatible( $target_type, $_ ), @{ $self->metrics };
+    my @supported_metrics = grep $self->_are_compatible( $target_type, $_ ),
+      @{ $self->metrics };
     return if !@supported_metrics;
 
-    my $targets = "Code::Statistics::Target::$target_type"->find_targets( $self );
+    my $targets = "Code::Statistics::Target::$target_type"->find_targets($self);
     return if !$targets;
 
-    my @measurements = map _measure_target( $_, @supported_metrics ), @{$targets};
+    my @measurements = map _measure_target( $_, @supported_metrics ),
+      @{$targets};
     $self->{measurements}{$target_type} = \@measurements;
 
     return $self;
@@ -90,10 +92,10 @@ sub _process_target_class {
 
 sub _are_compatible {
     my ( $self, $target, $metric ) = @_;
-    return 1 if "Code::Statistics::Target::$target"->force_support( $metric );
-    return 1 if "Code::Statistics::Metric::$metric"->force_support( $target );
-    return 0 if "Code::Statistics::Target::$target"->incompatible_with( $metric );
-    return 0 if "Code::Statistics::Metric::$metric"->incompatible_with( $target );
+    return 1 if "Code::Statistics::Target::$target"->force_support($metric);
+    return 1 if "Code::Statistics::Metric::$metric"->force_support($target);
+    return 0 if "Code::Statistics::Target::$target"->incompatible_with($metric);
+    return 0 if "Code::Statistics::Metric::$metric"->incompatible_with($target);
     return 1;
 }
 
@@ -101,7 +103,8 @@ sub _measure_target {
     my ( $target, @metrics ) = @_;
 
     my %measurement;
-    $measurement{$_} = "Code::Statistics::Metric::$_"->measure( $target ) for @metrics;
+    $measurement{$_} = "Code::Statistics::Metric::$_"->measure($target)
+      for @metrics;
 
     return \%measurement;
 }

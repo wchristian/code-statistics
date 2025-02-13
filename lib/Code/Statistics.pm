@@ -61,8 +61,9 @@ has config_args => (
 );
 
 sub _command_config {
-    my ( $self ) = @_;
-    my $config = Code::Statistics::Config->new( %{ $self->config_args } )->assemble;
+    my ($self) = @_;
+    my $config =
+      Code::Statistics::Config->new( %{ $self->config_args } )->assemble;
     return $config;
 }
 
@@ -81,7 +82,7 @@ currently provides.
 =cut
 
 sub collect {
-    my ( $self ) = @_;
+    my ($self) = @_;
     return Code::Statistics::Collector->new( $self->_command_config )->collect;
 }
 
@@ -92,7 +93,7 @@ sub collect {
 =cut
 
 sub report {
-    my ( $self ) = @_;
+    my ($self) = @_;
     return Code::Statistics::Reporter->new( $self->_command_config )->report;
 }
 

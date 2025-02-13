@@ -13,7 +13,7 @@ extends 'Code::Statistics::Target';
 
 sub find_targets {
     my ( $class, $file ) = @_;
-    return $file->ppi->find( 'PPI::Statement::Sub' );
+    return $file->ppi->find('PPI::Statement::Sub');
 }
 
 1;
