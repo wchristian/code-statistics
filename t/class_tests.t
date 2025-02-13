@@ -15,6 +15,6 @@ use Code::Statistics::FileTest;
 
 exit $ARGV[0]->runtests if $ARGV[0];
 
-Test::Class->runtests;
+Test::Class->runtests;  # set TEST_REGRESSION_GEN to regenerate regression tests
 
 exit;
